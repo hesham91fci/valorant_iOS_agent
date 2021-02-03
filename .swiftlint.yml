@@ -1,0 +1,29 @@
+disabled_rules:
+    - todo
+line_length:
+    - 300 #warning
+    - 400 #error
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+    - Carthage
+    - Pods
+opt_in_rules: # some rules are only opt-in
+    - closure_body_length
+    - function_body_length
+    - identifier_name
+function_body_length:
+    - 20 #warning
+    - 26 #error
+closure_body_length:
+    - 20 #warning
+    - 26 #error
+file_length:
+    - 500 #warning
+    - 600 #error
+large_tuple:
+    - 4
+    - 5
+identifier_name:
+    min_length: 2
+    max_length:
+      warning: 40
+      error: 41
