@@ -10,6 +10,6 @@ import Alamofire
 import Combine
 class AgentListViewModel: BaseViewModel<Agents, EmptyError>, ObservableObject {
     func getAgents() {
-        super.getData(url: Constants.APIs.agents, method: .get, params: nil, encoding: URLEncoding.queryString, headers: nil)
+        super.performRequest(url: Constants.APIs.agents, method: .get, params: nil, encoding: URLEncoding.queryString, headers: nil)
     }
 }

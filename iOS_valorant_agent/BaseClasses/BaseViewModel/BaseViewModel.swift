@@ -29,7 +29,7 @@ open class BaseViewModel<T: Codable, E: Codable> {
         return apiExceptionSubject.eraseToAnyPublisher()
     }
 
-    public func getData(url: String, method: Alamofire.HTTPMethod, params: Alamofire.Parameters?, encoding: Alamofire.ParameterEncoding, headers: Alamofire.HTTPHeaders?) {
+    public func performRequest(url: String, method: Alamofire.HTTPMethod, params: Alamofire.Parameters?, encoding: Alamofire.ParameterEncoding, headers: Alamofire.HTTPHeaders?) {
         let networkPublisher: Future<(T?, E?, AppError?), Never> = networkHandler.performRequest(url: environment.rawValue + url, method: method, params: params, encoding: encoding, headers: headers)
         networkPublisher.sink { [weak self] (successResponse, errorResponse, appError) in
             if let successResponse = successResponse {
