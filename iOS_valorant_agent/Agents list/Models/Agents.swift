@@ -54,9 +54,23 @@ enum Slot: String, Codable {
 
 // MARK: - Role
 struct Role: Codable {
-    let uuid, displayName, roleDescription: String
-    let displayIcon: String
-    let assetPath: String
+    var uuid: String
+    var displayName: String
+    var roleDescription: String
+    var displayIcon: String
+    var assetPath: String
+
+    init() {
+        self.init(uuid: "", displayName: "", roleDescription: "", displayIcon: "", assetPath: "")
+    }
+
+    init(uuid: String, displayName: String, roleDescription: String, displayIcon: String, assetPath: String) {
+        self.uuid = uuid
+        self.displayName = displayName
+        self.roleDescription = roleDescription
+        self.displayIcon = displayIcon
+        self.assetPath = assetPath
+    }
 
     enum CodingKeys: String, CodingKey {
         case uuid, displayName

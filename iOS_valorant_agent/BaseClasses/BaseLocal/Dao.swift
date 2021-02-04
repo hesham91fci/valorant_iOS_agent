@@ -25,6 +25,19 @@ class Dao<T: Object> {
         }
     }
 
+    func write(_ object: T) -> Bool {
+        var result = false
+        do {
+            try realm.write {
+                realm.add(object)
+                result = true
+            }
+        } catch {
+            result = false
+        }
+        return result
+    }
+
     deinit {
         observationToken?.invalidate()
     }

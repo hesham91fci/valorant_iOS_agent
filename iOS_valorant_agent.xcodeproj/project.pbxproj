@@ -27,6 +27,7 @@
 		E7C14B2625CAF80A00FDBC34 /* Dao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C14B2525CAF80A00FDBC34 /* Dao.swift */; };
 		E7C14B2E25CB41B200FDBC34 /* RealmAgents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C14B2D25CB41B200FDBC34 /* RealmAgents.swift */; };
 		E7C14B3625CB492400FDBC34 /* RealmExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C14B3525CB492400FDBC34 /* RealmExtensions.swift */; };
+		E7C14B4025CC49C100FDBC34 /* BaseProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C14B3F25CC49C100FDBC34 /* BaseProtocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		E7C14B2525CAF80A00FDBC34 /* Dao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dao.swift; sourceTree = "<group>"; };
 		E7C14B2D25CB41B200FDBC34 /* RealmAgents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAgents.swift; sourceTree = "<group>"; };
 		E7C14B3525CB492400FDBC34 /* RealmExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmExtensions.swift; sourceTree = "<group>"; };
+		E7C14B3F25CC49C100FDBC34 /* BaseProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProtocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,8 +258,9 @@
 		E7C14B1525CAC3FE00FDBC34 /* BaseLocal */ = {
 			isa = PBXGroup;
 			children = (
-				E7C14B1625CAC42D00FDBC34 /* LocalDataHandler.swift */,
 				E7C14B2025CAF7DB00FDBC34 /* LocalConfiguration.swift */,
+				E7C14B3F25CC49C100FDBC34 /* BaseProtocols.swift */,
+				E7C14B1625CAC42D00FDBC34 /* LocalDataHandler.swift */,
 				E7C14B2525CAF80A00FDBC34 /* Dao.swift */,
 				E7C14B3525CB492400FDBC34 /* RealmExtensions.swift */,
 				E7C14B3A25CB49EA00FDBC34 /* Models */,
@@ -552,6 +555,7 @@
 				04A04B1C25C9BA0E00F2C0DE /* EmptyError.swift in Sources */,
 				04A04AFB25C9883C00F2C0DE /* Environment.swift in Sources */,
 				E7C14B3625CB492400FDBC34 /* RealmExtensions.swift in Sources */,
+				E7C14B4025CC49C100FDBC34 /* BaseProtocols.swift in Sources */,
 				04A04B0025C9899800F2C0DE /* NetworkHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
