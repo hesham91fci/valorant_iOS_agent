@@ -6,10 +6,20 @@
 //
 
 import Foundation
-import Alamofire
 import Combine
-class AgentListViewModel: BaseViewModel<Agents, EmptyError>, ObservableObject {
+class AgentListViewModel: BaseViewModel, ObservableObject {
+    @Published var agents: Agents!
     func getAgents() {
-        super.performRequest(url: Constants.APIs.agents, method: .get, params: nil, encoding: URLEncoding.queryString, headers: nil)
+        mainRepo.getAgents().sink { (error) in
+            switch error {
+            case .failure(let appError):
+                print("\(appError)")
+            default:
+                print("finished")
+            }
+        } receiveValue: { [weak self] (agents) in
+            self?.agents = agents
+        }.store(in: &subscriptions)
+
     }
 }

@@ -20,6 +20,8 @@
 		04A04B0D25C9B97100F2C0DE /* Agents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A04B0C25C9B97100F2C0DE /* Agents.swift */; };
 		04A04B1325C9B9E100F2C0DE /* AgentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A04B1225C9B9E100F2C0DE /* AgentListViewModel.swift */; };
 		04A04B1C25C9BA0E00F2C0DE /* EmptyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A04B1B25C9BA0E00F2C0DE /* EmptyError.swift */; };
+		04E233FC25CBF09900165E04 /* MainRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E233FB25CBF09900165E04 /* MainRepo.swift */; };
+		04E2340125CBF0C900165E04 /* AgentsRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E2340025CBF0C900165E04 /* AgentsRepo.swift */; };
 		4F3CDD0ECD889CB5E2E21C79 /* Pods_iOS_valorant_agent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 315478F3C0E3A9228534B90D /* Pods_iOS_valorant_agent.framework */; };
 		7E8593011B53268E00A35542 /* Pods_iOS_valorant_agentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20551D586337FFBACD40F038 /* Pods_iOS_valorant_agentTests.framework */; };
 /* End PBXBuildFile section */
@@ -60,6 +62,8 @@
 		04A04B0C25C9B97100F2C0DE /* Agents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agents.swift; sourceTree = "<group>"; };
 		04A04B1225C9B9E100F2C0DE /* AgentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentListViewModel.swift; sourceTree = "<group>"; };
 		04A04B1B25C9BA0E00F2C0DE /* EmptyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyError.swift; sourceTree = "<group>"; };
+		04E233FB25CBF09900165E04 /* MainRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepo.swift; sourceTree = "<group>"; };
+		04E2340025CBF0C900165E04 /* AgentsRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentsRepo.swift; sourceTree = "<group>"; };
 		20551D586337FFBACD40F038 /* Pods_iOS_valorant_agentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_valorant_agentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21D31D9B621DD9143325BBFA /* Pods-iOS_valorant_agentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_valorant_agentTests.release.xcconfig"; path = "Target Support Files/Pods-iOS_valorant_agentTests/Pods-iOS_valorant_agentTests.release.xcconfig"; sourceTree = "<group>"; };
 		315478F3C0E3A9228534B90D /* Pods_iOS_valorant_agent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_valorant_agent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +196,7 @@
 				04A04AF525C9870B00F2C0DE /* AppError.swift */,
 				04A04AFA25C9883C00F2C0DE /* Environment.swift */,
 				04A04AFF25C9899800F2C0DE /* NetworkHandler.swift */,
+				04E233FB25CBF09900165E04 /* MainRepo.swift */,
 			);
 			path = BaseNetworking;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 		04A04B0A25C9B94E00F2C0DE /* Agents list */ = {
 			isa = PBXGroup;
 			children = (
+				04E233FA25CBF02300165E04 /* Repo */,
 				04A04B1125C9B9CE00F2C0DE /* ViewModel */,
 				04A04B0B25C9B96300F2C0DE /* Models */,
 			);
@@ -227,6 +233,14 @@
 				04A04B1B25C9BA0E00F2C0DE /* EmptyError.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		04E233FA25CBF02300165E04 /* Repo */ = {
+			isa = PBXGroup;
+			children = (
+				04E2340025CBF0C900165E04 /* AgentsRepo.swift */,
+			);
+			path = Repo;
 			sourceTree = "<group>";
 		};
 		40FC59D5B1D9D9EECB90504F /* Pods */ = {
@@ -512,8 +526,10 @@
 				04A04B1325C9B9E100F2C0DE /* AgentListViewModel.swift in Sources */,
 				04A04AAE25C97A8200F2C0DE /* iOS_valorant_agentApp.swift in Sources */,
 				04A04AF125C9868200F2C0DE /* BaseViewModel.swift in Sources */,
+				04E2340125CBF0C900165E04 /* AgentsRepo.swift in Sources */,
 				0445262B25CAA787004CE494 /* Constants.swift in Sources */,
 				04A04B0D25C9B97100F2C0DE /* Agents.swift in Sources */,
+				04E233FC25CBF09900165E04 /* MainRepo.swift in Sources */,
 				04A04B1C25C9BA0E00F2C0DE /* EmptyError.swift in Sources */,
 				04A04AFB25C9883C00F2C0DE /* Environment.swift in Sources */,
 				04A04B0025C9899800F2C0DE /* NetworkHandler.swift in Sources */,
