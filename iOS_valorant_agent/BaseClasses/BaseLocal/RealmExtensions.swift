@@ -10,17 +10,7 @@ import RealmSwift
 
 // swiftlint:disable force_cast
 
-// MARK: - Collections Extensions
-
-extension List where Element: Object {
-    var toArray: [Element] {
-        var array = [Element]()
-        self.forEach { element in
-            array.append(element)
-        }
-        return array
-    }
-}
+// MARK: - Collections Mapping Extensions
 
 extension Array where Element: RealmCollectionValue {
     var toRealmList: List<Element> {

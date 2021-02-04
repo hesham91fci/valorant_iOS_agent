@@ -10,46 +10,15 @@ import RealmSwift
 import Combine
 
 protocol LocalDataHandlerProtocol {
-
+     var agents: Dao<RealmAgentData> {get}
 }
 
 class LocalDataHandler: LocalDataHandlerProtocol {
-    private var observationToken: NotificationToken?
+    var agents = Dao<RealmAgentData>()
 
     private let realm = LocalConfiguration.realm
-    var test = Dao<Test>()
-    var test2 =  Dao<Test2>()
 
-    func writeToRealm<T: Object>(_ object: T) -> Bool {
-        var result = false
-        do {
-            try realm.write {
-                realm.add(object)
-                result = true
-            }
-        } catch {
-            result = false
-        }
-        return result
+    func getAgents() -> PassthroughSubject<[RealmAgentData], Never> {
+        agents.resultSubject
     }
-
-    func getTestValues() -> PassthroughSubject<[Test], Never> {
-         test.resultSubject
-    }
-
-    func getTest2Values() -> PassthroughSubject<[Test2], Never> {
-         test2.resultSubject
-    }
-
-   deinit {
-       observationToken?.invalidate()
-   }
-}
-
-class Test: Object {
-    @objc dynamic var value: String = ""
-}
-
-class Test2: Object {
-    @objc dynamic var value: Int = 0
 }

@@ -25,7 +25,7 @@ class Dao<T: Object> {
         }
     }
 
-    func write(_ object: T) -> Bool {
+    func insert(_ object: T) -> Bool {
         var result = false
         do {
             try realm.write {
@@ -34,6 +34,22 @@ class Dao<T: Object> {
             }
         } catch {
             result = false
+        }
+        return result
+    }
+
+    func delete(primaryKeyParamater: String, value: Any) -> Bool {
+        let realmObject = realm.objects(T.self).filter("\(primaryKeyParamater) = %@", value).first
+        var result = false
+        if let realmObject = realmObject {
+            do {
+                try realm.write {
+                    realm.delete(realmObject)
+                    result = true
+                }
+            } catch {
+                result = false
+            }
         }
         return result
     }

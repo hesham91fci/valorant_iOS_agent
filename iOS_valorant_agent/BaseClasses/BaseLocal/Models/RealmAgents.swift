@@ -26,6 +26,9 @@ class RealmAgentData: Object {
     @objc dynamic var role: RealmRole? = RealmRole()
     var abilities: List<RealmAbility> = List()
 
+    override class func primaryKey() -> String? {
+        return "uuid"
+    }
     override init() { }
 }
 
