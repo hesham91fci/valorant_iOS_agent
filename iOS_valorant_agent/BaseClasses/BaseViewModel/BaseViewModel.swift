@@ -11,7 +11,16 @@ import Alamofire
 open class BaseViewModel {
     private var apiExceptionSubject: PassthroughSubject<AppError, Never> = PassthroughSubject<AppError, Never>()
     var subscriptions: [AnyCancellable] = []
-    let mainRepo = MainRepo()
+    let mainRepo = BaseRepo()
+    
+    func handleAppError(error: Subscribers.Completion<AppError>){
+        switch error {
+        case .failure(let appError):
+            self.apiExceptionSubject.send(appError)
+        default:
+            print("finished")
+        }
+    }
 
     public var apiExceptionPublisher: AnyPublisher<AppError, Never> {
         return apiExceptionSubject.eraseToAnyPublisher()

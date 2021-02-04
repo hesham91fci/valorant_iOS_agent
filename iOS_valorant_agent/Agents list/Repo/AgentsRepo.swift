@@ -8,8 +8,8 @@
 import Foundation
 import Combine
 import Alamofire
-class AgentsRepo {
+class AgentsRepo: BaseRepo {
     func getAgents() -> AnyPublisher<Agents, AppError> {
-        return NetworkHandler().performRequest(url: Constants.APIs.agents, method: .get, params: nil, encoding: URLEncoding.queryString, headers: nil)
+        return networkHandler.performRequest(url: Constants.APIs.agents, method: .get, params: nil, encoding: URLEncoding.queryString, headers: nil)
     }
 }

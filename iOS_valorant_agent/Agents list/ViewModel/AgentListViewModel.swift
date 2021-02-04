@@ -10,13 +10,8 @@ import Combine
 class AgentListViewModel: BaseViewModel, ObservableObject {
     @Published var agents: Agents!
     func getAgents() {
-        mainRepo.getAgents().sink { (error) in
-            switch error {
-            case .failure(let appError):
-                print("\(appError)")
-            default:
-                print("finished")
-            }
+        AgentsRepo().getAgents().sink {[weak self] (error) in
+            self?.handleAppError(error: error)
         } receiveValue: { [weak self] (agents) in
             self?.agents = agents
         }.store(in: &subscriptions)
