@@ -14,9 +14,8 @@ protocol LocalDataHandlerProtocol {
 }
 
 class LocalDataHandler: LocalDataHandlerProtocol {
-    var agents = Dao<RealmAgentData>()
-
     private let realm = LocalConfiguration.realm
+    var agents = Dao<RealmAgentData>()
 
     func getAgents() -> PassthroughSubject<[RealmAgentData], Never> {
         agents.resultSubject

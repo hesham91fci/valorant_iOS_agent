@@ -12,8 +12,8 @@ open class BaseViewModel {
     private var apiExceptionSubject: PassthroughSubject<AppError, Never> = PassthroughSubject<AppError, Never>()
     var subscriptions: [AnyCancellable] = []
     let mainRepo = BaseRepo()
-    
-    func handleAppError(error: Subscribers.Completion<AppError>){
+
+    func handleAppError(error: Subscribers.Completion<AppError>) {
         switch error {
         case .failure(let appError):
             self.apiExceptionSubject.send(appError)

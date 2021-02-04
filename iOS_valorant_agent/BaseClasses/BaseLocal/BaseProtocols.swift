@@ -10,12 +10,10 @@ import RealmSwift
 
 protocol RealmMapper {
    associatedtype RealmObject: Object
-
    func toRealmObject() -> RealmObject
 }
 
 protocol DtoObjectMapper {
   associatedtype DtoObject: Codable
-
   func toDtoObject() -> DtoObject
 }

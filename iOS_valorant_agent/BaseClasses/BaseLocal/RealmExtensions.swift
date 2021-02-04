@@ -27,7 +27,7 @@ extension Array where Element: RealmMapper {
         var realmArray: [T] = [T]()
 
         self.forEach { realmElement in
-            realmArray.append(realmElement.toRealmObject() as! T) // return type of the funcon must be same as passed type
+            realmArray.append(realmElement.toRealmObject() as! T) // return type of the function must be same as the passed type
         }
         return realmArray
     }
@@ -38,7 +38,7 @@ extension Array  where Element: DtoObjectMapper {
         var realmArray: [T] = [T]()
 
         self.forEach { realmElement in
-            realmArray.append(realmElement.toDtoObject() as! T) // return type of the funcon must be same as passed type
+            realmArray.append(realmElement.toDtoObject() as! T) // return type of the function must be same as the passed type
         }
         return realmArray
     }
