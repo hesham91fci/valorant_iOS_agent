@@ -9,12 +9,37 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var agentListViewModel = AgentListViewModel()
-
+    @State var shouldShowAgentDetails: Bool = false
+    @State var agentDetailsView: AgentDetailsView!
     var body: some View {
-        return VStack {
-            Text("Hello world")
-            Button("Press me!") {
-                agentListViewModel.getAgents()
+        return GeometryReader { _ in
+            VStack(alignment: .leading) {
+                Text("Hello world")
+                    Button("Press me!") {
+                        agentListViewModel.getAgents()
+                    }
+                    if agentListViewModel.agents != nil {
+                        NavigationView {
+                            NavigationLink(destination: agentDetailsView, isActive: $shouldShowAgentDetails) {
+                                    Button(action: {
+                                        print("login tapped")
+                                        self.agentDetailsView = AgentDetailsView(agentListViewModel: agentListViewModel, agentUUID: "5f8d3a7f-467b-97f3-062c-13acf203c006")
+                                        self.shouldShowAgentDetails = true
+                                    }) {
+                                        HStack {
+                                            Spacer()
+                                            Text("Login").foregroundColor(Color.white).bold()
+                                            Spacer()
+                                        }
+                                    }
+                                    .accentColor(Color.black)
+                                    .padding()
+                                    .background(Color(UIColor.darkGray))
+                                    .cornerRadius(4.0)
+                                    .padding(Edge.Set.vertical, 20)
+                                }
+                    }
+                }
             }
         }
 

@@ -12,4 +12,12 @@ class AgentsRepo: BaseRepo {
     func getAgents() -> AnyPublisher<Agents, AppError> {
         return networkHandler.performRequest(url: Constants.APIs.agents, method: .get, params: nil, encoding: URLEncoding.queryString, headers: nil)
     }
+
+    func storeAgents(agents: [AgentsData]) {
+        agents.forEach({localDataHandler.agents.insert($0.toRealmObject())})
+    }
+
+    func getAgentByUUID(agentUUID: String) -> AgentsData? {
+        return localDataHandler.agents.getById(primaryKeyParamater: "uuid", value: agentUUID)?.toDtoObject()
+    }
 }

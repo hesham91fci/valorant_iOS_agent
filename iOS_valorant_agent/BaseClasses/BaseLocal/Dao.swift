@@ -25,17 +25,22 @@ class Dao<T: Object> {
         }
     }
 
+    @discardableResult
     func insert(_ object: T) -> Bool {
         var result = false
         do {
             try realm.write {
-                realm.add(object)
+                realm.add(object, update: .modified)
                 result = true
             }
         } catch {
             result = false
         }
         return result
+    }
+
+    func getById(primaryKeyParamater: String, value: Any) -> T? {
+        return realm.objects(T.self).filter("\(primaryKeyParamater) = %@", value).first
     }
 
     func delete(primaryKeyParamater: String, value: Any) -> Bool {

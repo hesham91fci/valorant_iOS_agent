@@ -18,13 +18,15 @@ struct HomeScreenView: View {
     init() { }
 
     var body: some View {
-        VStack {
-            upperHeader
+        NavigationView {
+            VStack {
+                upperHeader
 
-            SegmentedPicker(selectedValue: $selectedValue, pickerValues: [SegmentedPickerValues.popular.rawValue, SegmentedPickerValues.favorites.rawValue])
+                SegmentedPicker(selectedValue: $selectedValue, pickerValues: [SegmentedPickerValues.popular.rawValue, SegmentedPickerValues.favorites.rawValue])
 
-            listItmesView
-        }
+                listItmesView
+            }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 
     var upperHeader: some View {

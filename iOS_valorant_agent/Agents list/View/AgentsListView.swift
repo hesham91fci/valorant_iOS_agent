@@ -22,7 +22,9 @@ struct AgentsListView: SwiftUI.View {
             ScrollView {
                 LazyVGrid(columns: columns) {
                     ForEach(agentsViewModel.agents.data, id: \.uuid) { agent in
-                        drawAgentListItemView(color: getRandomColor, agent: agent, geometry: geometry)
+                        NavigationLink(destination: AgentDetailsView(agentListViewModel: AgentListViewModel(), agentUUID: agent.uuid)) {
+                            drawAgentListItemView(color: getRandomColor, agent: agent, geometry: geometry)
+                        }
                     }
                 }
             }
@@ -36,8 +38,8 @@ struct AgentsListView: SwiftUI.View {
                 .rotation3DEffect(Angle(degrees: 4), axis: (x: 0, y:1, z:0))
 
             ZStack(alignment: .bottom) {
-                    KFImage(URL(string: agent.bustPortrait ?? ""))
-                        .resizable()
+                KFImage(URL(string: agent.bustPortrait ?? ""))
+                    .resizable()
 
                 HStack(alignment: .bottom) {
                     VStack {

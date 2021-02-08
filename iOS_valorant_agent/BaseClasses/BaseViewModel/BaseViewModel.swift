@@ -26,4 +26,8 @@ open class BaseViewModel {
         return apiExceptionSubject.eraseToAnyPublisher()
     }
 
+    deinit {
+        subscriptions.removeAll()
+    }
+
 }

@@ -22,6 +22,7 @@
 		04A04B1C25C9BA0E00F2C0DE /* EmptyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A04B1B25C9BA0E00F2C0DE /* EmptyError.swift */; };
 		04E233FC25CBF09900165E04 /* BaseRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E233FB25CBF09900165E04 /* BaseRepo.swift */; };
 		04E2340125CBF0C900165E04 /* AgentsRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E2340025CBF0C900165E04 /* AgentsRepo.swift */; };
+		04E2340A25D0391500165E04 /* AgentDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E2340925D0391500165E04 /* AgentDetailsView.swift */; };
 		4F3CDD0ECD889CB5E2E21C79 /* Pods_iOS_valorant_agent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 315478F3C0E3A9228534B90D /* Pods_iOS_valorant_agent.framework */; };
 		7E8593011B53268E00A35542 /* Pods_iOS_valorant_agentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20551D586337FFBACD40F038 /* Pods_iOS_valorant_agentTests.framework */; };
 		E784EC3925D00F650098C646 /* AgentsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E784EC3825D00F650098C646 /* AgentsListView.swift */; };
@@ -74,6 +75,7 @@
 		04A04B1B25C9BA0E00F2C0DE /* EmptyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyError.swift; sourceTree = "<group>"; };
 		04E233FB25CBF09900165E04 /* BaseRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRepo.swift; sourceTree = "<group>"; };
 		04E2340025CBF0C900165E04 /* AgentsRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentsRepo.swift; sourceTree = "<group>"; };
+		04E2340925D0391500165E04 /* AgentDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentDetailsView.swift; sourceTree = "<group>"; };
 		20551D586337FFBACD40F038 /* Pods_iOS_valorant_agentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_valorant_agentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21D31D9B621DD9143325BBFA /* Pods-iOS_valorant_agentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_valorant_agentTests.release.xcconfig"; path = "Target Support Files/Pods-iOS_valorant_agentTests/Pods-iOS_valorant_agentTests.release.xcconfig"; sourceTree = "<group>"; };
 		315478F3C0E3A9228534B90D /* Pods_iOS_valorant_agent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_valorant_agent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +161,7 @@
 			children = (
 				0445262925CAA779004CE494 /* Constants */,
 				04A04B0A25C9B94E00F2C0DE /* Agents list */,
+				04E2340825D038F000165E04 /* Agent details */,
 				04A04AED25C9864500F2C0DE /* BaseClasses */,
 				04A04AAD25C97A8200F2C0DE /* iOS_valorant_agentApp.swift */,
 				04A04AAF25C97A8200F2C0DE /* ContentView.swift */,
@@ -264,6 +267,14 @@
 				04E2340025CBF0C900165E04 /* AgentsRepo.swift */,
 			);
 			path = Repo;
+			sourceTree = "<group>";
+		};
+		04E2340825D038F000165E04 /* Agent details */ = {
+			isa = PBXGroup;
+			children = (
+				04E2340925D0391500165E04 /* AgentDetailsView.swift */,
+			);
+			path = "Agent details";
 			sourceTree = "<group>";
 		};
 		40FC59D5B1D9D9EECB90504F /* Pods */ = {
@@ -581,6 +592,7 @@
 				04A04B1325C9B9E100F2C0DE /* AgentListViewModel.swift in Sources */,
 				E784EC4E25D15C8F0098C646 /* SegmentedPicker.swift in Sources */,
 				04A04AAE25C97A8200F2C0DE /* iOS_valorant_agentApp.swift in Sources */,
+				04E2340A25D0391500165E04 /* AgentDetailsView.swift in Sources */,
 				E7C14B1725CAC42D00FDBC34 /* LocalDataHandler.swift in Sources */,
 				E7C14B2625CAF80A00FDBC34 /* Dao.swift in Sources */,
 				E784EC4125D0469F0098C646 /* HomeScreenView.swift in Sources */,
