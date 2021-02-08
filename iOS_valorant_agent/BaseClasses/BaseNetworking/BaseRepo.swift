@@ -9,4 +9,5 @@ import Foundation
 import Combine
 class BaseRepo {
     let networkHandler: NetworkHandler = NetworkHandler()
+    let localDataHandler: LocalDataHandler = LocalDataHandler()
 }
