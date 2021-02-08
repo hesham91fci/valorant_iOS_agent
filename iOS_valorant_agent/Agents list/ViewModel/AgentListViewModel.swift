@@ -21,8 +21,7 @@ class AgentListViewModel: BaseViewModel, ObservableObject {
             self?.handleAppError(error: error)
         } receiveValue: { [weak self] (agents) in
             self?.agents = agents
-            self?.agents.data = agents.data.filter { value in !(value.bustPortrait ?? "").isEmpty }
-
+            self?.agents.data = agents.data.filter { value in !(value.bustPortrait ?? "").isEmpty }.shuffled()
         }.store(in: &subscriptions)
     }
 }

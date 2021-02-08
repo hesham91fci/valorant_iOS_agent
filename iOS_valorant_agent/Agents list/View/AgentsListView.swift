@@ -18,7 +18,6 @@ struct AgentsListView: SwiftUI.View {
     ]
 
     var body: some SwiftUI.View {
-
         GeometryReader { geometry in
             ScrollView {
                 LazyVGrid(columns: columns) {
@@ -51,7 +50,7 @@ struct AgentsListView: SwiftUI.View {
                     .foregroundColor(Color.white)
                     .font(.title2)
                     .minimumScaleFactor(0.7)
-                    
+
                     Spacer()
                 }
             }

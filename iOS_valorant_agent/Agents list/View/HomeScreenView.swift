@@ -7,12 +7,23 @@
 
 import SwiftUI
 
+enum SegmentedPickerValues: String {
+    case popular = "Popular"
+    case favorites = "Favorites"
+}
+
 struct HomeScreenView: View {
+    @State private var selectedValue = SegmentedPickerValues.popular.rawValue
+
+    init() { }
+
     var body: some View {
         VStack {
             upperHeader
 
-            agentsTabView
+            SegmentedPicker(selectedValue: $selectedValue, pickerValues: [SegmentedPickerValues.popular.rawValue, SegmentedPickerValues.favorites.rawValue])
+
+            listItmesView
         }
     }
 
@@ -32,10 +43,11 @@ struct HomeScreenView: View {
         }
     }
 
-    var agentsTabView: some View {
-        //TabView {
-            AgentsListView()
-        //}
+    private var listItmesView: AnyView {
+        if selectedValue == SegmentedPickerValues.popular.rawValue {
+            return AnyView(AgentsListView())
+        }
+        return AnyView(EmptyView())
     }
 }
 

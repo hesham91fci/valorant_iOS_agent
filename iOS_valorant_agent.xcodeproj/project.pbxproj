@@ -27,6 +27,7 @@
 		E784EC3925D00F650098C646 /* AgentsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E784EC3825D00F650098C646 /* AgentsListView.swift */; };
 		E784EC4125D0469F0098C646 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E784EC4025D0469F0098C646 /* HomeScreenView.swift */; };
 		E784EC4925D151AF0098C646 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E784EC4825D151AF0098C646 /* Extensions.swift */; };
+		E784EC4E25D15C8F0098C646 /* SegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E784EC4D25D15C8F0098C646 /* SegmentedPicker.swift */; };
 		E7C14B1725CAC42D00FDBC34 /* LocalDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C14B1625CAC42D00FDBC34 /* LocalDataHandler.swift */; };
 		E7C14B2125CAF7DB00FDBC34 /* LocalConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C14B2025CAF7DB00FDBC34 /* LocalConfiguration.swift */; };
 		E7C14B2625CAF80A00FDBC34 /* Dao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C14B2525CAF80A00FDBC34 /* Dao.swift */; };
@@ -85,6 +86,7 @@
 		E784EC3825D00F650098C646 /* AgentsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentsListView.swift; sourceTree = "<group>"; };
 		E784EC4025D0469F0098C646 /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
 		E784EC4825D151AF0098C646 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E784EC4D25D15C8F0098C646 /* SegmentedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPicker.swift; sourceTree = "<group>"; };
 		E7C14B1625CAC42D00FDBC34 /* LocalDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataHandler.swift; sourceTree = "<group>"; };
 		E7C14B2025CAF7DB00FDBC34 /* LocalConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalConfiguration.swift; sourceTree = "<group>"; };
 		E7C14B2525CAF80A00FDBC34 /* Dao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dao.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 			children = (
 				E784EC4025D0469F0098C646 /* HomeScreenView.swift */,
 				E784EC3825D00F650098C646 /* AgentsListView.swift */,
+				E784EC4D25D15C8F0098C646 /* SegmentedPicker.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -576,6 +579,7 @@
 				04A04AF625C9870B00F2C0DE /* AppError.swift in Sources */,
 				04A04AB025C97A8200F2C0DE /* ContentView.swift in Sources */,
 				04A04B1325C9B9E100F2C0DE /* AgentListViewModel.swift in Sources */,
+				E784EC4E25D15C8F0098C646 /* SegmentedPicker.swift in Sources */,
 				04A04AAE25C97A8200F2C0DE /* iOS_valorant_agentApp.swift in Sources */,
 				E7C14B1725CAC42D00FDBC34 /* LocalDataHandler.swift in Sources */,
 				E7C14B2625CAF80A00FDBC34 /* Dao.swift in Sources */,
