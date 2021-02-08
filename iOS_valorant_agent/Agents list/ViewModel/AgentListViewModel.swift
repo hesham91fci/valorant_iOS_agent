@@ -14,11 +14,6 @@ class AgentListViewModel: BaseViewModel, ObservableObject {
     private let agentsRepo = AgentsRepo()
     let agentErrorSubject: PassthroughSubject<String, Never> = PassthroughSubject()
 
-    override init() {
-        super.init()
-        self.getAgents()
-    }
-
     func getAgents() {
         agentsRepo.getAgents().sink {[weak self] (error) in
             self?.handleAppError(error: error)
@@ -35,5 +30,15 @@ class AgentListViewModel: BaseViewModel, ObservableObject {
             return
         }
         self.agent = agent
+    }
+
+    func toggleFavoriteAgent() {
+        agent?.isFavorite = !(agent?.isFavorite ?? true)
+        guard let agent = agent else {
+            agentErrorSubject.send("AgentUUID not found")
+            return
+        }
+
+        agentsRepo.updateAgent(agent: agent)
     }
 }

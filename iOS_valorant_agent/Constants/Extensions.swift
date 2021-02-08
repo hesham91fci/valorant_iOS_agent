@@ -24,3 +24,11 @@ extension View {
         clipShape(RoundedCorner(radius: radius, corners: corners) )
     }
 }
+
+extension UINavigationController {
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationBar.standardAppearance.configureWithTransparentBackground()
+        navigationBar.isHidden = true
+    }
+}

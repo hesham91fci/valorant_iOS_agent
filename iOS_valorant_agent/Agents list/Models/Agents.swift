@@ -23,6 +23,7 @@ struct AgentsData: Codable {
     let isFullPortraitRightFacing, isPlayableCharacter, isAvailableForTest: Bool
     let role: Role?
     let abilities: [Ability]
+    var isFavorite: Bool = false
 
     enum CodingKeys: String, CodingKey {
         case uuid, displayName

@@ -26,7 +26,7 @@ class Dao<T: Object> {
     }
 
     @discardableResult
-    func insert(_ object: T) -> Bool {
+    func insertOrUpdate(_ object: T) -> Bool {
         var result = false
         do {
             try realm.write {

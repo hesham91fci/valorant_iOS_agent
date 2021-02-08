@@ -25,6 +25,7 @@ class RealmAgentData: Object {
     @objc dynamic var isAvailableForTest: Bool = false
     @objc dynamic var role: RealmRole? = RealmRole()
     var abilities: List<RealmAbility> = List()
+    @objc dynamic var isFavorite: Bool = false
 
     override class func primaryKey() -> String? {
         return "uuid"

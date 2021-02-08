@@ -23,7 +23,7 @@ struct ContentView: View {
                             NavigationLink(destination: agentDetailsView, isActive: $shouldShowAgentDetails) {
                                     Button(action: {
                                         print("login tapped")
-                                        self.agentDetailsView = AgentDetailsView(agentListViewModel: agentListViewModel, agentUUID: "5f8d3a7f-467b-97f3-062c-13acf203c006")
+                                        self.agentDetailsView = AgentDetailsView(agentUUID: "5f8d3a7f-467b-97f3-062c-13acf203c006")
                                         self.shouldShowAgentDetails = true
                                     }) {
                                         HStack {

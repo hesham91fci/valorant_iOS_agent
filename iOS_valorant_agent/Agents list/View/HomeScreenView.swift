@@ -15,8 +15,6 @@ enum SegmentedPickerValues: String {
 struct HomeScreenView: View {
     @State private var selectedValue = SegmentedPickerValues.popular.rawValue
 
-    init() { }
-
     var body: some View {
         NavigationView {
             VStack {

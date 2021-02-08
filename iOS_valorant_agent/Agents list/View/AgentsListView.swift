@@ -17,12 +17,16 @@ struct AgentsListView: SwiftUI.View {
         GridItem(.flexible(minimum: 100))
     ]
 
+    init() {
+        self.agentsViewModel.getAgents()
+    }
+
     var body: some SwiftUI.View {
         GeometryReader { geometry in
             ScrollView {
                 LazyVGrid(columns: columns) {
                     ForEach(agentsViewModel.agents.data, id: \.uuid) { agent in
-                        NavigationLink(destination: AgentDetailsView(agentListViewModel: AgentListViewModel(), agentUUID: agent.uuid)) {
+                        NavigationLink(destination: AgentDetailsView(agentUUID: agent.uuid)) {
                             drawAgentListItemView(color: getRandomColor, agent: agent, geometry: geometry)
                         }
                     }

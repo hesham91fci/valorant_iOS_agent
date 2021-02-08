@@ -10,19 +10,33 @@ import struct Kingfisher.KFImage
 struct AgentDetailsView: View {
 
     @ObservedObject var agentListViewModel: AgentListViewModel = AgentListViewModel()
-    init(agentListViewModel: AgentListViewModel, agentUUID: String) {
-        self.agentListViewModel = agentListViewModel
+
+    let agentUUID: String!
+    init( agentUUID: String) {
+        self.agentUUID = agentUUID
         self.agentListViewModel.getAgentById(agentUUID: agentUUID)
     }
+
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .leading, spacing: 8, content: {
+
+                   // backButton
+
                     ZStack {
                         agentImage(imagePath: agentListViewModel.agent?.fullPortrait ?? "")
                         VStack(alignment: .leading, spacing: 8.0) {
                             Text(agentListViewModel.agent?.displayName ?? "").padding(.leading, 8.0)
                             Text(agentListViewModel.agent?.role?.displayName ?? "").padding(.leading, 8.0)
+                            Button(action: {
+                                agentListViewModel.toggleFavoriteAgent()
+
+                            }) {
+                                Image(systemName: agentListViewModel.agent?.isFavorite ?? false ? "heart.fill" : "heart")
+                            }
+                            .padding(.trailing, 8.0)
+                            .frame(width: geometry.size.width, alignment: .topTrailing)
 
                         }.frame(width: geometry.size.width, alignment: .topLeading)
 
@@ -65,13 +79,22 @@ struct AgentDetailsView: View {
             .frame(width: 70, height: 70)
             .aspectRatio(contentMode: .fill)
     }
+
+//    var backButton: some View {
+//        Button {
+//            self.presentationMode.wrappedValue.dismiss()
+//        } label: {
+//            Image(systemName: "chevron.backward")
+//                .foregroundColor(Color.white)
+//        }
+//    }
 }
 
 struct AgentDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            AgentDetailsView(agentListViewModel: AgentListViewModel(), agentUUID: "123")
-            AgentDetailsView(agentListViewModel: AgentListViewModel(), agentUUID: "123")
+            AgentDetailsView(agentUUID: "123")
+            AgentDetailsView(agentUUID: "123")
         }
 
     }
