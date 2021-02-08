@@ -31,31 +31,31 @@ struct AgentsListView: SwiftUI.View {
 
     private func drawAgentListItemView(color: SwiftUI.Color, agent: AgentsData, geometry: GeometryProxy) -> some SwiftUI.View {
         ZStack {
-            Rectangle()
-                .fill(color)
-                .cornerRadius(50, corners: [.topRight, .bottomLeft])
-                .rotation3DEffect(Angle(degrees: 8), axis: (x: 0, y:1, z:0))
+            Rectangle().fill(color)
+                .cornerRadius(30, corners: [.topRight, .bottomLeft])
+                .rotation3DEffect(Angle(degrees: 4), axis: (x: 0, y:1, z:0))
 
             ZStack(alignment: .bottom) {
                     KFImage(URL(string: agent.bustPortrait ?? ""))
                         .resizable()
-                        .padding([.leading], 30)
 
                 HStack(alignment: .bottom) {
                     VStack {
-                        Text(agent.displayName)
+                        Text(agent.displayName.uppercased())
+                            .font(.title2)
+                            .bold()
                         Text(agent.role?.displayName ?? "")
+                            .font(.title3)
                     }
                     .padding()
                     .foregroundColor(Color.white)
-                    .font(.title2)
                     .minimumScaleFactor(0.7)
 
                     Spacer()
                 }
             }
         }
-        .padding()
+        .padding(10)
         .frame(width: geometry.size.width / 2, height: geometry.size.height / 2)
     }
 
