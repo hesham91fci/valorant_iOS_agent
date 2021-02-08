@@ -8,13 +8,21 @@
 import Foundation
 import Combine
 class AgentListViewModel: BaseViewModel, ObservableObject {
-    @Published var agents: Agents!
+    @Published var agents: Agents = Agents(status: 200, data: [AgentsData]())
+    private var agentsRepo = AgentsRepo()
+
+    override init() {
+        super.init()
+        self.getAgents()
+    }
+
     func getAgents() {
-        AgentsRepo().getAgents().sink {[weak self] (error) in
+        agentsRepo.getAgents().sink { [weak self] (error) in
             self?.handleAppError(error: error)
         } receiveValue: { [weak self] (agents) in
             self?.agents = agents
-        }.store(in: &subscriptions)
+            self?.agents.data = agents.data.filter { value in !(value.bustPortrait ?? "").isEmpty }
 
+        }.store(in: &subscriptions)
     }
 }

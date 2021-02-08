@@ -24,6 +24,9 @@
 		04E2340125CBF0C900165E04 /* AgentsRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E2340025CBF0C900165E04 /* AgentsRepo.swift */; };
 		4F3CDD0ECD889CB5E2E21C79 /* Pods_iOS_valorant_agent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 315478F3C0E3A9228534B90D /* Pods_iOS_valorant_agent.framework */; };
 		7E8593011B53268E00A35542 /* Pods_iOS_valorant_agentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20551D586337FFBACD40F038 /* Pods_iOS_valorant_agentTests.framework */; };
+		E784EC3925D00F650098C646 /* AgentsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E784EC3825D00F650098C646 /* AgentsListView.swift */; };
+		E784EC4125D0469F0098C646 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E784EC4025D0469F0098C646 /* HomeScreenView.swift */; };
+		E784EC4925D151AF0098C646 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E784EC4825D151AF0098C646 /* Extensions.swift */; };
 		E7C14B1725CAC42D00FDBC34 /* LocalDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C14B1625CAC42D00FDBC34 /* LocalDataHandler.swift */; };
 		E7C14B2125CAF7DB00FDBC34 /* LocalConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C14B2025CAF7DB00FDBC34 /* LocalConfiguration.swift */; };
 		E7C14B2625CAF80A00FDBC34 /* Dao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C14B2525CAF80A00FDBC34 /* Dao.swift */; };
@@ -79,6 +82,9 @@
 		6DE9716D587B5B736BBBD48B /* Pods-iOS_valorant_agent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_valorant_agent.release.xcconfig"; path = "Target Support Files/Pods-iOS_valorant_agent/Pods-iOS_valorant_agent.release.xcconfig"; sourceTree = "<group>"; };
 		DFCCA7722D58DC16EF19D416 /* Pods-iOS_valorant_agent-iOS_valorant_agentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_valorant_agent-iOS_valorant_agentUITests.debug.xcconfig"; path = "Target Support Files/Pods-iOS_valorant_agent-iOS_valorant_agentUITests/Pods-iOS_valorant_agent-iOS_valorant_agentUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E0D5762B323D2CFD49049506 /* Pods-iOS_valorant_agent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_valorant_agent.debug.xcconfig"; path = "Target Support Files/Pods-iOS_valorant_agent/Pods-iOS_valorant_agent.debug.xcconfig"; sourceTree = "<group>"; };
+		E784EC3825D00F650098C646 /* AgentsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentsListView.swift; sourceTree = "<group>"; };
+		E784EC4025D0469F0098C646 /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
+		E784EC4825D151AF0098C646 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E7C14B1625CAC42D00FDBC34 /* LocalDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataHandler.swift; sourceTree = "<group>"; };
 		E7C14B2025CAF7DB00FDBC34 /* LocalConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalConfiguration.swift; sourceTree = "<group>"; };
 		E7C14B2525CAF80A00FDBC34 /* Dao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dao.swift; sourceTree = "<group>"; };
@@ -119,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				0445262A25CAA787004CE494 /* Constants.swift */,
+				E784EC4825D151AF0098C646 /* Extensions.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -217,6 +224,7 @@
 		04A04B0A25C9B94E00F2C0DE /* Agents list */ = {
 			isa = PBXGroup;
 			children = (
+				E784EC3725D00F1C0098C646 /* View */,
 				04E233FA25CBF02300165E04 /* Repo */,
 				04A04B1125C9B9CE00F2C0DE /* ViewModel */,
 				04A04B0B25C9B96300F2C0DE /* Models */,
@@ -267,6 +275,15 @@
 				21D31D9B621DD9143325BBFA /* Pods-iOS_valorant_agentTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E784EC3725D00F1C0098C646 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E784EC4025D0469F0098C646 /* HomeScreenView.swift */,
+				E784EC3825D00F650098C646 /* AgentsListView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		E7C14B1525CAC3FE00FDBC34 /* BaseLocal */ = {
@@ -555,17 +572,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E784EC3925D00F650098C646 /* AgentsListView.swift in Sources */,
 				04A04AF625C9870B00F2C0DE /* AppError.swift in Sources */,
 				04A04AB025C97A8200F2C0DE /* ContentView.swift in Sources */,
 				04A04B1325C9B9E100F2C0DE /* AgentListViewModel.swift in Sources */,
 				04A04AAE25C97A8200F2C0DE /* iOS_valorant_agentApp.swift in Sources */,
 				E7C14B1725CAC42D00FDBC34 /* LocalDataHandler.swift in Sources */,
 				E7C14B2625CAF80A00FDBC34 /* Dao.swift in Sources */,
+				E784EC4125D0469F0098C646 /* HomeScreenView.swift in Sources */,
 				04A04AF125C9868200F2C0DE /* BaseViewModel.swift in Sources */,
 				04E2340125CBF0C900165E04 /* AgentsRepo.swift in Sources */,
 				0445262B25CAA787004CE494 /* Constants.swift in Sources */,
 				E7C14B2125CAF7DB00FDBC34 /* LocalConfiguration.swift in Sources */,
 				E7C14B2E25CB41B200FDBC34 /* RealmAgents.swift in Sources */,
+				E784EC4925D151AF0098C646 /* Extensions.swift in Sources */,
 				04A04B0D25C9B97100F2C0DE /* Agents.swift in Sources */,
 				04E233FC25CBF09900165E04 /* BaseRepo.swift in Sources */,
 				04A04B1C25C9BA0E00F2C0DE /* EmptyError.swift in Sources */,

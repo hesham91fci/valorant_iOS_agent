@@ -10,7 +10,7 @@ import Foundation
 // MARK: - Agents
 struct Agents: Codable {
     let status: Int
-    let data: [AgentsData]
+    var data: [AgentsData]
 }
 
 // MARK: - Datum
