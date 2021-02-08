@@ -24,7 +24,9 @@ struct HomeScreenView: View {
 
                 listItmesView
             }
-        }.navigationViewStyle(StackNavigationViewStyle())
+            .navigationViewStyle(StackNavigationViewStyle())
+            .navigationBarTitle(Text(""), displayMode: .inline)
+        }
     }
 
     var upperHeader: some View {
