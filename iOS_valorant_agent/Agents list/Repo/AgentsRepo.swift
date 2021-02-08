@@ -14,11 +14,22 @@ class AgentsRepo: BaseRepo {
     }
 
     func storeAgents(agents: [AgentsData]) {
-        agents.forEach({localDataHandler.agents.insert($0.toRealmObject())})
+        agents.forEach({
+            var modifiableAgent = $0
+            if let agent = getAgentByUUID(agentUUID: $0.uuid) {
+                print("got agent \(agent.isFavorite)")
+                modifiableAgent.isFavorite = agent.isFavorite
+            }
+            localDataHandler.agents.insertOrUpdate(modifiableAgent.toRealmObject())
+        })
     }
 
     func getAgentByUUID(agentUUID: String) -> AgentsData? {
         return localDataHandler.agents.getById(primaryKeyParamater: "uuid", value: agentUUID)?.toDtoObject()
+    }
+
+    func updateAgent(agent: AgentsData) {
+        localDataHandler.agents.insertOrUpdate(agent.toRealmObject())
     }
 
 }

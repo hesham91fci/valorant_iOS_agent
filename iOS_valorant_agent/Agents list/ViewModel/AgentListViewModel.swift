@@ -29,4 +29,14 @@ class AgentListViewModel: BaseViewModel, ObservableObject {
         }
         self.agent = agent
     }
+
+    func toggleFavoriteAgent() {
+        agent?.isFavorite = !(agent?.isFavorite ?? true)
+        guard let agent = agent else {
+            agentErrorSubject.send("AgentUUID not found")
+            return
+        }
+
+        agentsRepo.updateAgent(agent: agent)
+    }
 }

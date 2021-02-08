@@ -10,8 +10,10 @@ import struct Kingfisher.KFImage
 struct AgentDetailsView: View {
 
     @ObservedObject var agentListViewModel: AgentListViewModel = AgentListViewModel()
+    let agentUUID: String!
     init(agentListViewModel: AgentListViewModel, agentUUID: String) {
         self.agentListViewModel = agentListViewModel
+        self.agentUUID = agentUUID
         self.agentListViewModel.getAgentById(agentUUID: agentUUID)
     }
     var body: some View {
@@ -23,6 +25,14 @@ struct AgentDetailsView: View {
                         VStack(alignment: .leading, spacing: 8.0) {
                             Text(agentListViewModel.agent?.displayName ?? "").padding(.leading, 8.0)
                             Text(agentListViewModel.agent?.role?.displayName ?? "").padding(.leading, 8.0)
+                            Button(action: {
+                                agentListViewModel.toggleFavoriteAgent()
+
+                            }) {
+                                Image(systemName: agentListViewModel.agent?.isFavorite ?? false ? "heart.fill" : "heart")
+                            }
+                            .padding(.trailing, 8.0)
+                            .frame(width: geometry.size.width, alignment: .topTrailing)
 
                         }.frame(width: geometry.size.width, alignment: .topLeading)
 

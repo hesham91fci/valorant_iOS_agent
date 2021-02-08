@@ -64,6 +64,7 @@ extension AgentsData: RealmMapper {
         realmAgent.isAvailableForTest = isAvailableForTest
         realmAgent.role = role?.toRealmObject()
         realmAgent.abilities = (abilities.toRealmArray()).toRealmList
+        realmAgent.isFavorite = isFavorite
         return realmAgent
     }
 }
@@ -99,7 +100,8 @@ extension RealmAgentData: DtoObjectMapper {
             characterTags: Array(characterTags), displayIcon: displayIcon, displayIconSmall: displayIconSmall, bustPortrait: bustPortrait,
             fullPortrait: fullPortrait, assetPath: assetPath, isFullPortraitRightFacing: isFullPortraitRightFacing,
             isPlayableCharacter: isPlayableCharacter, isAvailableForTest: isAvailableForTest, role: role?.toDtoObject() ?? Role(),
-            abilities: Array(abilities).toDtoArray()
+            abilities: Array(abilities).toDtoArray(),
+            isFavorite: isFavorite
         )
     }
 }
