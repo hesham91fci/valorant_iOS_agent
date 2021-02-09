@@ -47,9 +47,9 @@ struct HomeScreenView: View {
 
     private var listItmesView: AnyView {
         if selectedValue == SegmentedPickerValues.popular.rawValue {
-            return AnyView(AgentsListView())
+            return AnyView(AgentsListView(isFavorite: false))
         }
-        return AnyView(EmptyView())
+        return AnyView(AgentsListView(isFavorite: true))
     }
 }
 

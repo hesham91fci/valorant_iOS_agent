@@ -11,23 +11,25 @@ import Kingfisher
 struct AgentsListView: SwiftUI.View {
 
     @ObservedObject var agentsViewModel = AgentListViewModel()
+    var isFavorite: Bool
 
     private let columns = [
         GridItem(.flexible(minimum: 100)),
         GridItem(.flexible(minimum: 100))
     ]
 
-    init() {
-        self.agentsViewModel.getAgents()
+    init(isFavorite: Bool) {
+        self.isFavorite = isFavorite
+        self.agentsViewModel.getAgentsData(isFavorite: isFavorite)
     }
 
     var body: some SwiftUI.View {
         GeometryReader { geometry in
             ScrollView {
                 LazyVGrid(columns: columns) {
-                    ForEach(agentsViewModel.agents.data, id: \.uuid) { agent in
+                    ForEach(isFavorite ? agentsViewModel.favoriteAgents : agentsViewModel.agents.data, id: \.uuid) { agent in
                         NavigationLink(destination: AgentDetailsView(agentUUID: agent.uuid)) {
-                            drawAgentListItemView(color: getRandomColor, agent: agent, geometry: geometry)
+                            drawAgentListItemView(color: Color.characterColors[agentsViewModel.getCurrentAgentIndex(agent: agent)], agent: agent, geometry: geometry)
                         }
                     }
                 }
@@ -77,6 +79,6 @@ struct AgentsListView: SwiftUI.View {
 
 struct AgentsListView_Previews: PreviewProvider {
     static var previews: some SwiftUI.View {
-        AgentsListView()
+        AgentsListView(isFavorite: false)
     }
 }

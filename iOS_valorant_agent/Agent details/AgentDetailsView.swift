@@ -58,7 +58,7 @@ struct AgentDetailsView: View {
                 })
             }
         }
-        .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.gray/*@END_MENU_TOKEN@*/)
+        .navigationBarTitle("\(agentListViewModel.agent?.displayName ?? "") Details")
 
     }
 

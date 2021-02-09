@@ -17,7 +17,6 @@ class AgentsRepo: BaseRepo {
         agents.forEach({
             var modifiableAgent = $0
             if let agent = getAgentByUUID(agentUUID: $0.uuid) {
-                print("got agent \(agent.isFavorite)")
                 modifiableAgent.isFavorite = agent.isFavorite
             }
             localDataHandler.agents.insertOrUpdate(modifiableAgent.toRealmObject())
@@ -32,4 +31,7 @@ class AgentsRepo: BaseRepo {
         localDataHandler.agents.insertOrUpdate(agent.toRealmObject())
     }
 
+    func getLocalAgents() -> PassthroughSubject<[RealmAgentData], Never> {
+        localDataHandler.agents.resultSubject
+    }
 }
