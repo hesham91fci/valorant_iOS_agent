@@ -13,6 +13,9 @@ struct AgentsListView: SwiftUI.View {
     @ObservedObject var agentsViewModel = AgentListViewModel()
     var isFavorite: Bool
 
+    var agentsData: [AgentsData] {
+        isFavorite ? agentsViewModel.favoriteAgents : agentsViewModel.agents.data
+    }
     private let columns = [
         GridItem(.flexible(minimum: 100)),
         GridItem(.flexible(minimum: 100))
@@ -25,19 +28,48 @@ struct AgentsListView: SwiftUI.View {
 
     var body: some SwiftUI.View {
         GeometryReader { geometry in
-            ScrollView {
-                LazyVGrid(columns: columns) {
-                    ForEach(isFavorite ? agentsViewModel.favoriteAgents : agentsViewModel.agents.data, id: \.uuid) { agent in
-                        NavigationLink(destination: AgentDetailsView(agentUUID: agent.uuid)) {
-                            drawAgentListItemView(color: Color.characterColors[agentsViewModel.getCurrentAgentIndex(agent: agent)], agent: agent, geometry: geometry)
-                        }
+            if agentsData.count == 0 {
+                if isFavorite {
+                    emptyFavoritesView
+                } else {
+                    progressView
+                }
+            } else {
+                drawAgentsList(geometry: geometry)
+            }
+        }
+    }
+
+    private var progressView: some SwiftUI.View {
+        HStack(alignment: .center) {
+            Spacer()
+            ProgressView()
+            Spacer()
+        }
+    }
+
+    private var emptyFavoritesView: some SwiftUI.View {
+        HStack(alignment: .center) {
+            Spacer()
+            Text("No Favorites")
+                .font(.title)
+            Spacer()
+        }.padding([.top], 100)
+    }
+
+    private func drawAgentsList(geometry: GeometryProxy) -> some SwiftUI.View {
+        ScrollView {
+            LazyVGrid(columns: columns) {
+                ForEach(agentsData, id: \.uuid) { agent in
+                    NavigationLink(destination: AgentDetailsView(agentUUID: agent.uuid)) {
+                        drawListItem(color: Color.characterColors[agentsViewModel.getCurrentAgentIndex(agent: agent)], agent: agent, geometry: geometry)
                     }
                 }
             }
         }
     }
 
-    private func drawAgentListItemView(color: SwiftUI.Color, agent: AgentsData, geometry: GeometryProxy) -> some SwiftUI.View {
+    private func drawListItem(color: SwiftUI.Color, agent: AgentsData, geometry: GeometryProxy) -> some SwiftUI.View {
         ZStack {
             Rectangle().fill(color)
                 .cornerRadius(30, corners: [.topRight, .bottomLeft])
