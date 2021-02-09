@@ -10,7 +10,6 @@
 		0445262B25CAA787004CE494 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445262A25CAA787004CE494 /* Constants.swift */; };
 		04568D1CCFCA26E47CB92647 /* Pods_iOS_valorant_agent_iOS_valorant_agentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40381990D36FA46D983E32CE /* Pods_iOS_valorant_agent_iOS_valorant_agentUITests.framework */; };
 		04A04AAE25C97A8200F2C0DE /* iOS_valorant_agentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A04AAD25C97A8200F2C0DE /* iOS_valorant_agentApp.swift */; };
-		04A04AB025C97A8200F2C0DE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A04AAF25C97A8200F2C0DE /* ContentView.swift */; };
 		04A04AB225C97A8200F2C0DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A04AB125C97A8200F2C0DE /* Assets.xcassets */; };
 		04A04AB525C97A8200F2C0DE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A04AB425C97A8200F2C0DE /* Preview Assets.xcassets */; };
 		04A04AF125C9868200F2C0DE /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A04AF025C9868200F2C0DE /* BaseViewModel.swift */; };
@@ -58,7 +57,6 @@
 		0445262A25CAA787004CE494 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		04A04AAA25C97A8200F2C0DE /* iOS_valorant_agent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_valorant_agent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A04AAD25C97A8200F2C0DE /* iOS_valorant_agentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_valorant_agentApp.swift; sourceTree = "<group>"; };
-		04A04AAF25C97A8200F2C0DE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		04A04AB125C97A8200F2C0DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04A04AB425C97A8200F2C0DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		04A04AB625C97A8200F2C0DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 				04E2340825D038F000165E04 /* Agent details */,
 				04A04AED25C9864500F2C0DE /* BaseClasses */,
 				04A04AAD25C97A8200F2C0DE /* iOS_valorant_agentApp.swift */,
-				04A04AAF25C97A8200F2C0DE /* ContentView.swift */,
 				04A04AB125C97A8200F2C0DE /* Assets.xcassets */,
 				04A04AB625C97A8200F2C0DE /* Info.plist */,
 				04A04AB325C97A8200F2C0DE /* Preview Content */,
@@ -588,7 +585,6 @@
 			files = (
 				E784EC3925D00F650098C646 /* AgentsListView.swift in Sources */,
 				04A04AF625C9870B00F2C0DE /* AppError.swift in Sources */,
-				04A04AB025C97A8200F2C0DE /* ContentView.swift in Sources */,
 				04A04B1325C9B9E100F2C0DE /* AgentListViewModel.swift in Sources */,
 				E784EC4E25D15C8F0098C646 /* SegmentedPicker.swift in Sources */,
 				04A04AAE25C97A8200F2C0DE /* iOS_valorant_agentApp.swift in Sources */,

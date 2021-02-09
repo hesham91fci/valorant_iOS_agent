@@ -10,9 +10,11 @@ import struct Kingfisher.KFImage
 struct AgentDetailsView: View {
 
     @ObservedObject var agentListViewModel: AgentListViewModel = AgentListViewModel()
-
+    let backgroundColor: Color
     let agentUUID: String!
-    init( agentUUID: String) {
+
+    init(agentUUID: String, backgroundColor: Color) {
+        self.backgroundColor = backgroundColor
         self.agentUUID = agentUUID
         self.agentListViewModel.getAgentById(agentUUID: agentUUID)
     }
@@ -22,25 +24,7 @@ struct AgentDetailsView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 8, content: {
 
-                   // backButton
-
-                    ZStack {
-                        agentImage(imagePath: agentListViewModel.agent?.fullPortrait ?? "")
-                        VStack(alignment: .leading, spacing: 8.0) {
-                            Text(agentListViewModel.agent?.displayName ?? "").padding(.leading, 8.0)
-                            Text(agentListViewModel.agent?.role?.displayName ?? "").padding(.leading, 8.0)
-                            Button(action: {
-                                agentListViewModel.toggleFavoriteAgent()
-
-                            }) {
-                                Image(systemName: agentListViewModel.agent?.isFavorite ?? false ? "heart.fill" : "heart")
-                            }
-                            .padding(.trailing, 8.0)
-                            .frame(width: geometry.size.width, alignment: .topTrailing)
-
-                        }.frame(width: geometry.size.width, alignment: .topLeading)
-
-                    }
+                    drawUpperHeader(geometry: geometry)
                     Text("Biography")
                         .padding(.leading, 8.0)
                     Text(agentListViewModel.agent?.datumDescription ?? "")
@@ -59,6 +43,64 @@ struct AgentDetailsView: View {
             }
         }
         .navigationBarTitle("\(agentListViewModel.agent?.displayName ?? "") Details")
+    }
+
+    private func drawUpperHeader(geometry: GeometryProxy) -> some View {
+        ZStack {
+            backgroundColor
+                .cornerRadius(10)
+                .padding(10)
+
+            agentImage(imagePath: agentListViewModel.agent?.fullPortrait ?? "")
+                .scaleEffect(x: 3, y: 3)
+                .clipped()
+                .opacity(0.2)
+                .frame(width: 300, height: 300 )
+
+            HStack {
+
+                VStack {
+
+                    Spacer()
+                    characterNameAndRole
+
+                    ZStack(alignment: .center) {
+                        Circle()
+                            .fill(Color.white)
+                            .frame(width: 50, height: 50)
+
+                        favoriteButton
+                    }
+                    .padding([.top], 10)
+                }
+                agentImage(imagePath: agentListViewModel.agent?.fullPortrait ?? "")
+            }
+            .frame(width: geometry.size.width)
+        }
+    }
+
+    private var characterNameAndRole: some View {
+        VStack(spacing: 3) {
+            Text((agentListViewModel.agent?.displayName ?? "").uppercased())
+                .font(.title2)
+                .bold()
+            Text(agentListViewModel.agent?.role?.displayName ?? "")
+                .font(.title3)
+        }
+        .padding(.top, 100)
+        .foregroundColor(Color.white)
+        .minimumScaleFactor(0.7)
+    }
+
+    private var favoriteButton: some View {
+        Button(action: {
+            agentListViewModel.toggleFavoriteAgent()
+        }, label: {
+            Image(systemName: agentListViewModel.agent?.isFavorite ?? false ? "heart.fill" : "heart" )
+                .resizable()
+                .foregroundColor(agentListViewModel.agent?.isFavorite ?? false ? .red : .gray)
+                .frame(width: 25, height: 25)
+        })
 
     }
 
@@ -67,7 +109,7 @@ struct AgentDetailsView: View {
         return KFImage(url)
             .resizable()
             .padding(8.0)
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.3)
+            .frame(width: UIScreen.main.bounds.width / 1.5, height: 300)
             .aspectRatio(contentMode: .fill)
     }
 
@@ -77,25 +119,12 @@ struct AgentDetailsView: View {
             .resizable()
             .padding(8.0)
             .frame(width: 70, height: 70)
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
     }
-
-//    var backButton: some View {
-//        Button {
-//            self.presentationMode.wrappedValue.dismiss()
-//        } label: {
-//            Image(systemName: "chevron.backward")
-//                .foregroundColor(Color.white)
-//        }
-//    }
 }
 
 struct AgentDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            AgentDetailsView(agentUUID: "123")
-            AgentDetailsView(agentUUID: "123")
-        }
-
+        AgentDetailsView(agentUUID: "123", backgroundColor: Color.gray)
     }
 }

@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
-import Kingfisher
+import struct Kingfisher.KFImage
 
-struct AgentsListView: SwiftUI.View {
+struct AgentsListView: View {
 
     @ObservedObject var agentsViewModel = AgentListViewModel()
     var isFavorite: Bool
@@ -26,7 +26,7 @@ struct AgentsListView: SwiftUI.View {
         self.agentsViewModel.getAgentsData(isFavorite: isFavorite)
     }
 
-    var body: some SwiftUI.View {
+    var body: some View {
         GeometryReader { geometry in
             if agentsData.count == 0 {
                 if isFavorite {
@@ -40,7 +40,7 @@ struct AgentsListView: SwiftUI.View {
         }
     }
 
-    private var progressView: some SwiftUI.View {
+    private var progressView: some View {
         HStack(alignment: .center) {
             Spacer()
             ProgressView()
@@ -48,7 +48,7 @@ struct AgentsListView: SwiftUI.View {
         }
     }
 
-    private var emptyFavoritesView: some SwiftUI.View {
+    private var emptyFavoritesView: some View {
         HStack(alignment: .center) {
             Spacer()
             Text("No Favorites")
@@ -57,19 +57,21 @@ struct AgentsListView: SwiftUI.View {
         }.padding([.top], 100)
     }
 
-    private func drawAgentsList(geometry: GeometryProxy) -> some SwiftUI.View {
+    private func drawAgentsList(geometry: GeometryProxy) -> some View {
         ScrollView {
             LazyVGrid(columns: columns) {
                 ForEach(agentsData, id: \.uuid) { agent in
-                    NavigationLink(destination: AgentDetailsView(agentUUID: agent.uuid)) {
-                        drawListItem(color: Color.characterColors[agentsViewModel.getCurrentAgentIndex(agent: agent)], agent: agent, geometry: geometry)
+                    let agentIndex = agentsViewModel.getCurrentAgentIndex(agent: agent)
+                    let characterColor = Color.characterColors[agentIndex]
+                    NavigationLink(destination: AgentDetailsView(agentUUID: agent.uuid, backgroundColor: characterColor)) {
+                        drawListItem(color: characterColor, agent: agent, geometry: geometry)
                     }
                 }
             }
         }
     }
 
-    private func drawListItem(color: SwiftUI.Color, agent: AgentsData, geometry: GeometryProxy) -> some SwiftUI.View {
+    private func drawListItem(color: Color, agent: AgentsData, geometry: GeometryProxy) -> some View {
         ZStack {
             Rectangle().fill(color)
                 .cornerRadius(30, corners: [.topRight, .bottomLeft])
@@ -98,19 +100,10 @@ struct AgentsListView: SwiftUI.View {
         .padding(10)
         .frame(width: geometry.size.width / 2, height: geometry.size.height / 2)
     }
-
-    private var getRandomColor: SwiftUI.Color {
-        Color(
-            red: .random(in: 0...0.9),
-            green: .random(in: 0...0.9),
-            blue: .random(in: 0...0.9)
-        ).opacity(0.7)
-    }
-
 }
 
 struct AgentsListView_Previews: PreviewProvider {
-    static var previews: some SwiftUI.View {
+    static var previews: some View {
         AgentsListView(isFavorite: false)
     }
 }

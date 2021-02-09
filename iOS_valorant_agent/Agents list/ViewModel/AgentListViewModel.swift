@@ -69,10 +69,8 @@ class AgentListViewModel: BaseViewModel, ObservableObject {
     }
 
     func getCurrentAgentIndex(agent viewAgentData: AgentsData) -> Int {
-        for index in 0..<agents.data.count {
-            if agents.data[index].uuid == viewAgentData.uuid {
-                agentIndex = index
-            }
+        for index in 0..<agents.data.count where agents.data[index].uuid == viewAgentData.uuid {
+            agentIndex = index
         }
         return agentIndex
     }
