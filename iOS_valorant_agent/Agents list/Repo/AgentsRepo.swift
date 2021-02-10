@@ -15,9 +15,7 @@ class AgentsRepo: BaseRepo {
             return networkHandler.performRequest(url: Constants.APIs.agents, method: .get, params: nil, encoding: URLEncoding.queryString, headers: nil)
         } else {
             var agents: [AgentsData] = []
-            for localAgent in localAgents {
-                agents.append(localAgent.toDtoObject())
-            }
+            agents.append(contentsOf: localAgents.toDtoArray())
             return Just(Agents(status: 200, data: agents)).mapError({ (_) -> AppError in
                 return AppError(message: "Unknown Error", errorCode: nil)
             }).eraseToAnyPublisher()
