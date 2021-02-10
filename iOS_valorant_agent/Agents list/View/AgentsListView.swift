@@ -63,7 +63,8 @@ struct AgentsListView: View {
                 ForEach(agentsData, id: \.uuid) { agent in
                     let agentIndex = agentsViewModel.getCurrentAgentIndex(agent: agent)
                     let characterColor = Color.characterColors[agentIndex]
-                    NavigationLink(destination: AgentDetailsView(agentUUID: agent.uuid, backgroundColor: characterColor)) {
+                    let agentDetailsViewModel = AgentDetailsViewModel(agentUUID: agent.uuid)
+                    NavigationLink(destination: AgentDetailsView(agentDetailsViewModel: agentDetailsViewModel, backgroundColor: characterColor)) {
                         drawListItem(color: characterColor, agent: agent, geometry: geometry)
                     }
                 }

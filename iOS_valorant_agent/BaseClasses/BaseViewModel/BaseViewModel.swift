@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 import Alamofire
-open class BaseViewModel {
+open class BaseViewModel: ObservableObject {
     private var apiExceptionSubject: PassthroughSubject<AppError, Never> = PassthroughSubject<AppError, Never>()
     var subscriptions: [AnyCancellable] = []
     let mainRepo = BaseRepo()

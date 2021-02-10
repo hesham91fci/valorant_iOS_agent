@@ -20,7 +20,6 @@ class AgentsRepo: BaseRepo {
                 return AppError(message: "Unknown Error", errorCode: nil)
             }).eraseToAnyPublisher()
         }
-
     }
 
     func storeAgents(agents: [AgentsData]) {
@@ -39,6 +38,10 @@ class AgentsRepo: BaseRepo {
 
     func updateAgent(agent: AgentsData) {
         localDataHandler.agents.insertOrUpdate(agent.toRealmObject())
+    }
+
+    func getFavoriteAgents() -> [AgentsData] {
+        return localDataHandler.agents.filterByColumn(columnName: "isFavorite", columnValue: true).toDtoArray()
     }
 
     func getLocalAgents() -> PassthroughSubject<[RealmAgentData], Never> {

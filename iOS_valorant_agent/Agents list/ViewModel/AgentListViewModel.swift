@@ -7,15 +7,12 @@
 
 import Foundation
 import Combine
-class AgentListViewModel: BaseViewModel, ObservableObject {
+class AgentListViewModel: BaseViewModel {
 
     @Published var agents: Agents = Agents(status: 200, data: [AgentsData]())
-    @Published private(set) var agent: AgentsData?
     @Published private(set) var favoriteAgents: [AgentsData] = [AgentsData]()
     private var agentIndex = 0
-
     private let agentsRepo = AgentsRepo()
-    let agentErrorSubject: PassthroughSubject<String, Never> = PassthroughSubject()
 
     func getAgents() {
         agentsRepo.getAgents().sink {[weak self] (error) in
@@ -28,29 +25,8 @@ class AgentListViewModel: BaseViewModel, ObservableObject {
         }.store(in: &subscriptions)
     }
 
-    func getAgentById(agentUUID: String) {
-        guard let agent = agentsRepo.getAgentByUUID(agentUUID: agentUUID) else {
-            agentErrorSubject.send("AgentUUID not found")
-            return
-        }
-        self.agent = agent
-    }
-
-    func toggleFavoriteAgent() {
-        agent?.isFavorite = !(agent?.isFavorite ?? true)
-        guard let agent = agent else {
-            agentErrorSubject.send("AgentUUID not found")
-            return
-        }
-
-        agentsRepo.updateAgent(agent: agent)
-    }
-
     func getFavoriteAgents() {
-        agentsRepo.getLocalAgents().sink { [weak self] (realmAgents) in
-            self?.favoriteAgents = realmAgents.filter { value in value.isFavorite }.toDtoArray()
-
-        }.store(in: &subscriptions)
+        self.favoriteAgents = agentsRepo.getFavoriteAgents()
     }
 
     func getAgentsData(isFavorite: Bool) {

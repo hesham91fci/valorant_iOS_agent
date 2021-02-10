@@ -43,6 +43,10 @@ class Dao<T: Object> {
         return Array(realm.objects(T.self))
     }
 
+    func filterByColumn(columnName: String, columnValue: Any) -> [T] {
+        return Array(realm.objects(T.self).filter("\(columnName) = %@", columnValue))
+    }
+
     func getById(primaryKeyParamater: String, value: Any) -> T? {
         return realm.objects(T.self).filter("\(primaryKeyParamater) = %@", value).first
     }

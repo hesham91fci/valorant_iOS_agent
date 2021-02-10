@@ -9,30 +9,33 @@ import SwiftUI
 import struct Kingfisher.KFImage
 struct AgentDetailsView: View {
 
-    @ObservedObject var agentListViewModel: AgentListViewModel = AgentListViewModel()
+    @ObservedObject var agentDetailsViewModel: AgentDetailsViewModel = AgentDetailsViewModel(agentUUID: "")
     let backgroundColor: Color
-    let agentUUID: String!
 
-    init(agentUUID: String, backgroundColor: Color) {
+    init(agentDetailsViewModel: AgentDetailsViewModel, backgroundColor: Color) {
         self.backgroundColor = backgroundColor
-        self.agentUUID = agentUUID
-        self.agentListViewModel.getAgentById(agentUUID: agentUUID)
+        self.agentDetailsViewModel = agentDetailsViewModel
+        self.agentDetailsViewModel.getAgentById()
+
     }
 
     var body: some View {
-        GeometryReader { geometry in
+//        self.agentDetailsViewModel.agentErrorSubject.sink { (error) in
+//            <#code#>
+//        }
+        return GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .leading, spacing: 8, content: {
 
                     drawUpperHeader(geometry: geometry)
                     Text("Biography")
                         .padding(.leading, 8.0)
-                    Text(agentListViewModel.agent?.datumDescription ?? "")
+                    Text(agentDetailsViewModel.agent?.datumDescription ?? "")
                         .padding(.leading, 8.0)
                         .padding(.bottom, 32.0)
                     Text("Special Abilities")
                         .padding(.leading, 8.0)
-                    ForEach(agentListViewModel.agent?.abilities ?? [], id: \.displayName) { (ability) in
+                    ForEach(agentDetailsViewModel.agent?.abilities ?? [], id: \.displayName) { (ability) in
                         HStack(alignment: .top, spacing: 8.0, content: {
                             abilityImage(imagePath: ability.displayIcon ?? "")
                             Text(ability.abilityDescription ?? "")
@@ -42,7 +45,7 @@ struct AgentDetailsView: View {
                 })
             }
         }
-        .navigationBarTitle("\(agentListViewModel.agent?.displayName ?? "") Details")
+        .navigationBarTitle("\(agentDetailsViewModel.agent?.displayName ?? "") Details")
     }
 
     private func drawUpperHeader(geometry: GeometryProxy) -> some View {
@@ -51,7 +54,7 @@ struct AgentDetailsView: View {
                 .cornerRadius(10)
                 .padding(10)
 
-            agentImage(imagePath: agentListViewModel.agent?.fullPortrait ?? "")
+            agentImage(imagePath: agentDetailsViewModel.agent?.fullPortrait ?? "")
                 .scaleEffect(x: 3, y: 3)
                 .clipped()
                 .opacity(0.2)
@@ -73,7 +76,7 @@ struct AgentDetailsView: View {
                     }
                     .padding([.top], 10)
                 }
-                agentImage(imagePath: agentListViewModel.agent?.fullPortrait ?? "")
+                agentImage(imagePath: agentDetailsViewModel.agent?.fullPortrait ?? "")
             }
             .frame(width: geometry.size.width)
         }
@@ -81,10 +84,10 @@ struct AgentDetailsView: View {
 
     private var characterNameAndRole: some View {
         VStack(spacing: 3) {
-            Text((agentListViewModel.agent?.displayName ?? "").uppercased())
+            Text((agentDetailsViewModel.agent?.displayName ?? "").uppercased())
                 .font(.title2)
                 .bold()
-            Text(agentListViewModel.agent?.role?.displayName ?? "")
+            Text(agentDetailsViewModel.agent?.role?.displayName ?? "")
                 .font(.title3)
         }
         .padding(.top, 100)
@@ -94,11 +97,11 @@ struct AgentDetailsView: View {
 
     private var favoriteButton: some View {
         Button(action: {
-            agentListViewModel.toggleFavoriteAgent()
+            agentDetailsViewModel.toggleFavoriteAgent()
         }, label: {
-            Image(systemName: agentListViewModel.agent?.isFavorite ?? false ? "heart.fill" : "heart" )
+            Image(systemName: agentDetailsViewModel.agent?.isFavorite ?? false ? "heart.fill" : "heart" )
                 .resizable()
-                .foregroundColor(agentListViewModel.agent?.isFavorite ?? false ? .red : .gray)
+                .foregroundColor(agentDetailsViewModel.agent?.isFavorite ?? false ? .red : .gray)
                 .frame(width: 25, height: 25)
         })
 
@@ -125,6 +128,6 @@ struct AgentDetailsView: View {
 
 struct AgentDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        AgentDetailsView(agentUUID: "123", backgroundColor: Color.gray)
+        AgentDetailsView(agentDetailsViewModel: AgentDetailsViewModel(agentUUID: ""), backgroundColor: Color.gray)
     }
 }
