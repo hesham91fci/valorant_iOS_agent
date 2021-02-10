@@ -10,11 +10,13 @@ import struct Kingfisher.KFImage
 struct AgentDetailsView: View {
 
     @ObservedObject var agentDetailsViewModel: AgentDetailsViewModel = AgentDetailsViewModel(agentUUID: "")
+    let agentUUID: String!
     let backgroundColor: Color
 
-    init(agentDetailsViewModel: AgentDetailsViewModel, backgroundColor: Color) {
+    init(agentUUID: String, backgroundColor: Color) {
         self.backgroundColor = backgroundColor
-        self.agentDetailsViewModel = agentDetailsViewModel
+        self.agentUUID = agentUUID
+        agentDetailsViewModel = AgentDetailsViewModel(agentUUID: agentUUID)
         self.agentDetailsViewModel.getAgentById()
 
     }
@@ -128,6 +130,6 @@ struct AgentDetailsView: View {
 
 struct AgentDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        AgentDetailsView(agentDetailsViewModel: AgentDetailsViewModel(agentUUID: ""), backgroundColor: Color.gray)
+        AgentDetailsView(agentUUID: "123", backgroundColor: .gray)
     }
 }
