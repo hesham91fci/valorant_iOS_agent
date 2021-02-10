@@ -10,7 +10,19 @@ import Combine
 import Alamofire
 class AgentsRepo: BaseRepo {
     func getAgents() -> AnyPublisher<Agents, AppError> {
-        return networkHandler.performRequest(url: Constants.APIs.agents, method: .get, params: nil, encoding: URLEncoding.queryString, headers: nil)
+        let localAgents = localDataHandler.agents.getAll()
+        if localDataHandler.agents.getAll().isEmpty {
+            return networkHandler.performRequest(url: Constants.APIs.agents, method: .get, params: nil, encoding: URLEncoding.queryString, headers: nil)
+        } else {
+            var agents: [AgentsData] = []
+            for localAgent in localAgents {
+                agents.append(localAgent.toDtoObject())
+            }
+            return Just(Agents(status: 200, data: agents)).mapError({ (_) -> AppError in
+                return AppError(message: "Unknown Error", errorCode: nil)
+            }).eraseToAnyPublisher()
+        }
+
     }
 
     func storeAgents(agents: [AgentsData]) {
@@ -33,5 +45,9 @@ class AgentsRepo: BaseRepo {
 
     func getLocalAgents() -> PassthroughSubject<[RealmAgentData], Never> {
         localDataHandler.agents.resultSubject
+    }
+
+    func syncAgents() {
+        getLocalAgents().send(localDataHandler.agents.getAll())
     }
 }

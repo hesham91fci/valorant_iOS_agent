@@ -39,6 +39,10 @@ class Dao<T: Object> {
         return result
     }
 
+    func getAll() -> [T] {
+        return Array(realm.objects(T.self))
+    }
+
     func getById(primaryKeyParamater: String, value: Any) -> T? {
         return realm.objects(T.self).filter("\(primaryKeyParamater) = %@", value).first
     }
