@@ -7,24 +7,43 @@
 
 import SwiftUI
 import Combine
-//struct BaseView: View {
-//    @State var errorMessage: String = ""
-//    @ObservedObject var baseViewModel: BaseViewModel = BaseViewModel()
-//    var subscriptions: [AnyCancellable] = []
-//    var body: some View {
-//        baseViewModel.apiExceptionPublisher.sink { (appError) in
-//            errorMessage = appError.message ?? ""
-//        }
-//        return errorMessage
-//    }
-//
-//    func displayErrorAlert() -> some View {
-//        return errorMessage.isEmpty ? EmptyView
-//    }
-//}
-//
-//struct BaseView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BaseView()
-//    }
-//}
+
+struct BaseView<Content: View>: View {
+    @State private var errorMessage: String = ""
+    @ObservedObject var viewModel: BaseViewModel
+    let content: Content
+
+    init(viewModel: BaseViewModel, @ViewBuilder content: () -> Content) {
+        self.content = content()
+        self.viewModel = viewModel
+        self.getErrorMessage()
+    }
+
+    var body: some View {
+        VStack {
+            Button("test") {
+                errorMessage = "test"
+            }
+
+            Button("test empty") {
+                errorMessage = ""
+            }
+
+            content
+                .alert(isPresented: .constant(!errorMessage.isEmpty)) {
+                    Alert(title: Text("App Error"), message: Text(errorMessage), dismissButton: .default(Text("Ok")))
+                }
+        }
+    }
+
+    func getErrorMessage() {
+        viewModel.apiExceptionPublisher.sink {(appError) in
+            errorMessage = appError.message ?? ""
+            print("error Message \(appError.message ?? "")")
+        }.store(in: &viewModel.subscriptions)
+    }
+
+    func displayErrorAlert() -> AnyView {
+        return errorMessage.isEmpty ? AnyView(EmptyView()) : AnyView(Text(errorMessage))
+    }
+}

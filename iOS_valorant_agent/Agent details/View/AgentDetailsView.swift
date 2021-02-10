@@ -22,10 +22,9 @@ struct AgentDetailsView: View {
     }
 
     var body: some View {
-//        self.agentDetailsViewModel.agentErrorSubject.sink { (error) in
-//            <#code#>
-//        }
-        return GeometryReader { geometry in
+
+        BaseView(viewModel: agentDetailsViewModel) {
+         GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .leading, spacing: 8, content: {
 
@@ -48,6 +47,8 @@ struct AgentDetailsView: View {
             }
         }
         .navigationBarTitle("\(agentDetailsViewModel.agent?.displayName ?? "") Details")
+
+    }
     }
 
     private func drawUpperHeader(geometry: GeometryProxy) -> some View {

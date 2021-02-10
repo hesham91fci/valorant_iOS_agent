@@ -27,15 +27,17 @@ struct AgentsListView: View {
     }
 
     var body: some View {
-        GeometryReader { geometry in
-            if agentsData.count == 0 {
-                if isFavorite {
-                    emptyFavoritesView
+        BaseView(viewModel: agentsViewModel) {
+            GeometryReader { geometry in
+                if agentsData.count == 0 {
+                    if isFavorite {
+                        emptyFavoritesView
+                    } else {
+                        progressView
+                    }
                 } else {
-                    progressView
+                    drawAgentsList(geometry: geometry)
                 }
-            } else {
-                drawAgentsList(geometry: geometry)
             }
         }
     }

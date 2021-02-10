@@ -7,11 +7,10 @@
 
 import Foundation
 import Combine
-class AgentDetailsViewModel: ObservableObject {
+class AgentDetailsViewModel: BaseViewModel {
     private let agentUUID: String!
     private let agentsRepo = AgentsRepo()
     @Published private(set) var agent: AgentsData?
-    let agentErrorSubject: PassthroughSubject<String, Never> = PassthroughSubject()
 
     init(agentUUID: String) {
         self.agentUUID = agentUUID
@@ -19,7 +18,7 @@ class AgentDetailsViewModel: ObservableObject {
 
     func getAgentById() {
         guard let agent = agentsRepo.getAgentByUUID(agentUUID: agentUUID) else {
-            agentErrorSubject.send("AgentUUID not found")
+            handleAppError(error: AppError(message: "AgentUUID not found", errorCode: -2))
             return
         }
         self.agent = agent
@@ -28,7 +27,7 @@ class AgentDetailsViewModel: ObservableObject {
     func toggleFavoriteAgent() {
         agent?.isFavorite = !(agent?.isFavorite ?? true)
         guard let agent = agent else {
-            agentErrorSubject.send("AgentUUID not found")
+            handleAppError(error: AppError(message: "AgentUUID not found", errorCode: -2))
             return
         }
 
