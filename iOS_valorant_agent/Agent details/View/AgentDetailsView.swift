@@ -62,28 +62,29 @@ struct AgentDetailsView: View {
                 .opacity(0.2)
                 .frame(width: 300, height: 300 )
 
-            HStack {
-
-                VStack {
-
-                    Spacer()
-                    characterNameAndRole
-
-                    ZStack(alignment: .center) {
-                        Circle()
-                            .fill(Color.white)
-                            .frame(width: 50, height: 50)
-
-                        favoriteButton
-                    }
-                    .padding([.top], 10)
-                }
-                agentImage(imagePath: agentDetailsViewModel.agent?.fullPortrait ?? "")
-            }
-            .frame(width: geometry.size.width)
+            upperHeaderFrontView
         }
     }
 
+    private var upperHeaderFrontView: some View {
+        HStack {
+            VStack {
+                Spacer()
+                characterNameAndRole
+
+                ZStack(alignment: .center) {
+                    Circle()
+                        .fill(Color.white)
+                        .frame(width: 50, height: 50)
+
+                    favoriteButton
+                }
+                .padding([.top], 10)
+            }
+            agentImage(imagePath: agentDetailsViewModel.agent?.fullPortrait ?? "")
+        }
+        .frame(width: UIScreen.main.bounds.size.width)
+    }
     private var characterNameAndRole: some View {
         VStack(spacing: 3) {
             Text((agentDetailsViewModel.agent?.displayName ?? "").uppercased())
@@ -101,9 +102,9 @@ struct AgentDetailsView: View {
         Button(action: {
             agentDetailsViewModel.toggleFavoriteAgent()
         }, label: {
-            Image(systemName: agentDetailsViewModel.agent?.isFavorite ?? false ? "heart.fill" : "heart" )
+            Image(systemName: (agentDetailsViewModel.agent?.isFavorite ?? false) ? "heart.fill" : "heart" )
                 .resizable()
-                .foregroundColor(agentDetailsViewModel.agent?.isFavorite ?? false ? .red : .gray)
+                .foregroundColor((agentDetailsViewModel.agent?.isFavorite ?? false) ? .red : .gray)
                 .frame(width: 25, height: 25)
         })
 

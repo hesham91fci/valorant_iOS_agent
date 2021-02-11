@@ -8,7 +8,8 @@
 import Foundation
 import Combine
 import SwiftUI
-class AgentListViewModel: BaseViewModel {
+
+class AgentListViewModel: BaseViewModel, ObservableObject {
 
     private var agents: Agents = Agents(status: 200, data: [AgentsData]())
     private var favoriteAgents: [AgentsData] = [AgentsData]()
@@ -17,7 +18,7 @@ class AgentListViewModel: BaseViewModel {
     private var agentIndex = 0
     private let agentsRepo = AgentsRepo()
 
-    func getAgents() {
+    private func getAgents() {
         agentsRepo.getAgents().sink {[weak self] (error) in
             self?.handleAppError(error: error)
         } receiveValue: { [weak self] (agents) in

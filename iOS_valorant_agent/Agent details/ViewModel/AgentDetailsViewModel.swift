@@ -7,7 +7,7 @@
 
 import Foundation
 import Combine
-class AgentDetailsViewModel: BaseViewModel {
+class AgentDetailsViewModel: BaseViewModel, ObservableObject {
     private let agentUUID: String!
     private let agentsRepo = AgentsRepo()
     @Published private(set) var agent: AgentsData?
@@ -25,7 +25,7 @@ class AgentDetailsViewModel: BaseViewModel {
     }
 
     func toggleFavoriteAgent() {
-        agent?.isFavorite = !(agent?.isFavorite ?? true)
+        agent!.isFavorite = !(agent!.isFavorite)
         guard let agent = agent else {
             handleAppError(error: AppError(message: "AgentUUID not found", errorCode: -2))
             return

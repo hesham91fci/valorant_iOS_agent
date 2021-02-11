@@ -11,7 +11,7 @@ import Combine
 struct BaseView<Content: View>: View {
     @State private var errorMessage: String = ""
     @State private var shouldShouldAlert: Bool = false
-    @ObservedObject var viewModel: BaseViewModel
+    var viewModel: BaseViewModel
     let content: Content
 
     init(viewModel: BaseViewModel, @ViewBuilder content: () -> Content) {
@@ -20,15 +20,13 @@ struct BaseView<Content: View>: View {
     }
 
     var body: some View {
-        VStack {
-            content
-                .alert(isPresented: $shouldShouldAlert) {
-                    Alert(title: Text("App Error"), message: Text(errorMessage), dismissButton: .default(Text("Ok")))
-                }.onReceive(viewModel.apiExceptionPublisher, perform: { appError in
-                    errorMessage = appError.localizedDescription
-                    shouldShouldAlert = true
-                })
-        }
+        content
+            .alert(isPresented: $shouldShouldAlert) {
+                Alert(title: Text("App Error"), message: Text(errorMessage), dismissButton: .default(Text("Ok")))
+            }.onReceive(viewModel.apiExceptionPublisher, perform: { appError in
+                errorMessage = appError.localizedDescription
+                shouldShouldAlert = true
+            })
     }
 
     func displayErrorAlert() -> AnyView {
