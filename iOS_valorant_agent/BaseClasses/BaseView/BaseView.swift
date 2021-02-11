@@ -10,37 +10,25 @@ import Combine
 
 struct BaseView<Content: View>: View {
     @State private var errorMessage: String = ""
+    @State private var shouldShouldAlert: Bool = false
     @ObservedObject var viewModel: BaseViewModel
     let content: Content
 
     init(viewModel: BaseViewModel, @ViewBuilder content: () -> Content) {
         self.content = content()
         self.viewModel = viewModel
-        self.getErrorMessage()
     }
 
     var body: some View {
         VStack {
-            Button("test") {
-                errorMessage = "test"
-            }
-
-            Button("test empty") {
-                errorMessage = ""
-            }
-
             content
-                .alert(isPresented: .constant(!errorMessage.isEmpty)) {
+                .alert(isPresented: $shouldShouldAlert) {
                     Alert(title: Text("App Error"), message: Text(errorMessage), dismissButton: .default(Text("Ok")))
-                }
+                }.onReceive(viewModel.apiExceptionPublisher, perform: { appError in
+                    errorMessage = appError.localizedDescription
+                    shouldShouldAlert = true
+                })
         }
-    }
-
-    func getErrorMessage() {
-        viewModel.apiExceptionPublisher.sink {(appError) in
-            errorMessage = appError.message ?? ""
-            print("error Message \(appError.message ?? "")")
-        }.store(in: &viewModel.subscriptions)
     }
 
     func displayErrorAlert() -> AnyView {
