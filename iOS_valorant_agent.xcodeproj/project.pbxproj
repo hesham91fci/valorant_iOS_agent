@@ -10,7 +10,10 @@
 		0445262B25CAA787004CE494 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445262A25CAA787004CE494 /* Constants.swift */; };
 		04568D1CCFCA26E47CB92647 /* Pods_iOS_valorant_agent_iOS_valorant_agentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40381990D36FA46D983E32CE /* Pods_iOS_valorant_agent_iOS_valorant_agentUITests.framework */; };
 		049161AA25D3FD1700A33C8A /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049161A925D3FD1700A33C8A /* BaseView.swift */; };
-		04A04AAE25C97A8200F2C0DE /* iOS_valorant_agentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A04AAD25C97A8200F2C0DE /* iOS_valorant_agentApp.swift */; };
+		049161B425D415DD00A33C8A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049161B325D415DD00A33C8A /* AppCoordinator.swift */; };
+		049161BC25D4160D00A33C8A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049161BB25D4160D00A33C8A /* Coordinator.swift */; };
+		049161C325D420A000A33C8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049161C125D420A000A33C8A /* AppDelegate.swift */; };
+		049161C425D420A000A33C8A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049161C225D420A000A33C8A /* SceneDelegate.swift */; };
 		04A04AB225C97A8200F2C0DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A04AB125C97A8200F2C0DE /* Assets.xcassets */; };
 		04A04AB525C97A8200F2C0DE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A04AB425C97A8200F2C0DE /* Preview Assets.xcassets */; };
 		04A04AF125C9868200F2C0DE /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A04AF025C9868200F2C0DE /* BaseViewModel.swift */; };
@@ -58,8 +61,11 @@
 /* Begin PBXFileReference section */
 		0445262A25CAA787004CE494 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		049161A925D3FD1700A33C8A /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		049161B325D415DD00A33C8A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		049161BB25D4160D00A33C8A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		049161C125D420A000A33C8A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		049161C225D420A000A33C8A /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		04A04AAA25C97A8200F2C0DE /* iOS_valorant_agent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_valorant_agent.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		04A04AAD25C97A8200F2C0DE /* iOS_valorant_agentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_valorant_agentApp.swift; sourceTree = "<group>"; };
 		04A04AB125C97A8200F2C0DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04A04AB425C97A8200F2C0DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		04A04AB625C97A8200F2C0DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -144,6 +150,23 @@
 			path = BaseView;
 			sourceTree = "<group>";
 		};
+		049161B125D415C600A33C8A /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				049161B225D415CC00A33C8A /* Coordinator */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		049161B225D415CC00A33C8A /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				049161B325D415DD00A33C8A /* AppCoordinator.swift */,
+				049161BB25D4160D00A33C8A /* Coordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		04A04AA125C97A8200F2C0DE = {
 			isa = PBXGroup;
 			children = (
@@ -169,13 +192,15 @@
 		04A04AAC25C97A8200F2C0DE /* iOS_valorant_agent */ = {
 			isa = PBXGroup;
 			children = (
+				049161B125D415C600A33C8A /* Core */,
 				0445262925CAA779004CE494 /* Constants */,
 				04A04B0A25C9B94E00F2C0DE /* Agents list */,
 				04E2340825D038F000165E04 /* Agent details */,
 				04A04AED25C9864500F2C0DE /* BaseClasses */,
-				04A04AAD25C97A8200F2C0DE /* iOS_valorant_agentApp.swift */,
 				04A04AB125C97A8200F2C0DE /* Assets.xcassets */,
 				04A04AB625C97A8200F2C0DE /* Info.plist */,
+				049161C125D420A000A33C8A /* AppDelegate.swift */,
+				049161C225D420A000A33C8A /* SceneDelegate.swift */,
 				04A04AB325C97A8200F2C0DE /* Preview Content */,
 			);
 			path = iOS_valorant_agent;
@@ -615,10 +640,11 @@
 			files = (
 				04D754C125D3F80700BF2109 /* AgentDetailsViewModel.swift in Sources */,
 				E784EC3925D00F650098C646 /* AgentsListView.swift in Sources */,
+				049161BC25D4160D00A33C8A /* Coordinator.swift in Sources */,
+				049161B425D415DD00A33C8A /* AppCoordinator.swift in Sources */,
 				04A04AF625C9870B00F2C0DE /* AppError.swift in Sources */,
 				04A04B1325C9B9E100F2C0DE /* AgentListViewModel.swift in Sources */,
 				E784EC4E25D15C8F0098C646 /* SegmentedPicker.swift in Sources */,
-				04A04AAE25C97A8200F2C0DE /* iOS_valorant_agentApp.swift in Sources */,
 				04E2340A25D0391500165E04 /* AgentDetailsView.swift in Sources */,
 				E7C14B1725CAC42D00FDBC34 /* LocalDataHandler.swift in Sources */,
 				E7C14B2625CAF80A00FDBC34 /* Dao.swift in Sources */,
@@ -626,12 +652,14 @@
 				04A04AF125C9868200F2C0DE /* BaseViewModel.swift in Sources */,
 				04E2340125CBF0C900165E04 /* AgentsRepo.swift in Sources */,
 				0445262B25CAA787004CE494 /* Constants.swift in Sources */,
+				049161C425D420A000A33C8A /* SceneDelegate.swift in Sources */,
 				E7C14B2125CAF7DB00FDBC34 /* LocalConfiguration.swift in Sources */,
 				E7C14B2E25CB41B200FDBC34 /* RealmAgents.swift in Sources */,
 				049161AA25D3FD1700A33C8A /* BaseView.swift in Sources */,
 				E784EC4925D151AF0098C646 /* Extensions.swift in Sources */,
 				04A04B0D25C9B97100F2C0DE /* Agents.swift in Sources */,
 				04E233FC25CBF09900165E04 /* BaseRepo.swift in Sources */,
+				049161C325D420A000A33C8A /* AppDelegate.swift in Sources */,
 				04A04B1C25C9BA0E00F2C0DE /* EmptyError.swift in Sources */,
 				04A04AFB25C9883C00F2C0DE /* Environment.swift in Sources */,
 				E7C14B3625CB492400FDBC34 /* RealmExtensions.swift in Sources */,

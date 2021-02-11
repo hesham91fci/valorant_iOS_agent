@@ -10,26 +10,24 @@ import struct Kingfisher.KFImage
 
 struct AgentsListView: View {
 
-    @ObservedObject var agentsViewModel = AgentListViewModel()
+    @ObservedObject var agentListViewModel = AgentListViewModel()
     var isFavorite: Bool
 
-    var agentsData: [AgentsData] {
-        isFavorite ? agentsViewModel.favoriteAgents : agentsViewModel.agents.data
-    }
     private let columns = [
         GridItem(.flexible(minimum: 100)),
         GridItem(.flexible(minimum: 100))
     ]
 
-    init(isFavorite: Bool) {
+    init(isFavorite: Bool, agentListViewModel: AgentListViewModel) {
         self.isFavorite = isFavorite
-        self.agentsViewModel.getAgentsData(isFavorite: isFavorite)
+        self.agentListViewModel = agentListViewModel
+        self.agentListViewModel.getAgentsData(isFavorite: isFavorite)
     }
 
     var body: some View {
-        BaseView(viewModel: agentsViewModel) {
+        BaseView(viewModel: agentListViewModel) {
             GeometryReader { geometry in
-                if agentsData.count == 0 {
+                if agentListViewModel.agentsToDisplay.count == 0 {
                     if isFavorite {
                         emptyFavoritesView
                     } else {
@@ -62,12 +60,12 @@ struct AgentsListView: View {
     private func drawAgentsList(geometry: GeometryProxy) -> some View {
         ScrollView {
             LazyVGrid(columns: columns) {
-                ForEach(agentsData, id: \.uuid) { agent in
-                    let agentIndex = agentsViewModel.getCurrentAgentIndex(agent: agent)
+                ForEach(agentListViewModel.agentsToDisplay, id: \.uuid) { agent in
+                    let agentIndex = agentListViewModel.getCurrentAgentIndex(agent: agent)
                     let characterColor = Color.characterColors[agentIndex]
-                    NavigationLink(destination: AgentDetailsView(agentUUID: agent.uuid, backgroundColor: characterColor)) {
-                        drawListItem(color: characterColor, agent: agent, geometry: geometry)
-                    }
+
+                    drawListItem(color: characterColor, agent: agent, geometry: geometry)
+
                 }
             }
         }
@@ -101,11 +99,14 @@ struct AgentsListView: View {
         }
         .padding(10)
         .frame(width: geometry.size.width / 2, height: geometry.size.height / 2)
+        .onTapGesture {
+            agentListViewModel.didSelectAgentDetails.send((agent.uuid, color))
+        }
     }
 }
 
 struct AgentsListView_Previews: PreviewProvider {
     static var previews: some View {
-        AgentsListView(isFavorite: false)
+        AgentsListView(isFavorite: false, agentListViewModel: AgentListViewModel())
     }
 }

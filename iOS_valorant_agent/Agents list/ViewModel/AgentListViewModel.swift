@@ -7,10 +7,13 @@
 
 import Foundation
 import Combine
+import SwiftUI
 class AgentListViewModel: BaseViewModel {
 
-    @Published var agents: Agents = Agents(status: 200, data: [AgentsData]())
-    @Published private(set) var favoriteAgents: [AgentsData] = [AgentsData]()
+    private var agents: Agents = Agents(status: 200, data: [AgentsData]())
+    private var favoriteAgents: [AgentsData] = [AgentsData]()
+    @Published var agentsToDisplay: [AgentsData] = []
+    let didSelectAgentDetails = PassthroughSubject<(String, Color), Never>()
     private var agentIndex = 0
     private let agentsRepo = AgentsRepo()
 
@@ -21,26 +24,28 @@ class AgentListViewModel: BaseViewModel {
             guard let self = self else { return }
             self.agents = agents
             self.agents.data = agents.data.filter { value in !(value.bustPortrait ?? "").isEmpty }
+            self.agentsToDisplay = self.agents.data
             self.agentsRepo.storeAgents(agents: self.agents.data)
         }.store(in: &subscriptions)
     }
 
+    func navigateToAgentDetails(agentUUID: String, backgroundColor: Color) {
+        didSelectAgentDetails.send((agentUUID, backgroundColor))
+    }
+
     func getFavoriteAgents() {
         self.favoriteAgents = agentsRepo.getFavoriteAgents()
+        self.agentsToDisplay = self.favoriteAgents
     }
 
     func getAgentsData(isFavorite: Bool) {
 
         if isFavorite {
-            if agents.data.count == 0 {
-                getFavoriteAgents()
-                agentIndex = 0
-            }
+            getFavoriteAgents()
+            agentIndex = 0
         } else {
-            if favoriteAgents.count == 0 {
-                getAgents()
-                agentIndex = 0
-            }
+            getAgents()
+            agentIndex = 0
         }
     }
 

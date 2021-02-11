@@ -22,7 +22,6 @@ struct AgentDetailsView: View {
     }
 
     var body: some View {
-
         BaseView(viewModel: agentDetailsViewModel) {
          GeometryReader { geometry in
             ScrollView {
