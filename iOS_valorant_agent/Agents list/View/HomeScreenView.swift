@@ -14,7 +14,7 @@ enum SegmentedPickerValues: String {
 
 struct HomeScreenView: View {
     @State private var selectedValue = SegmentedPickerValues.popular.rawValue
-
+    var agentListViewModel: AgentListViewModel = AgentListViewModel()
     var body: some View {
         NavigationView {
             VStack {
@@ -47,14 +47,14 @@ struct HomeScreenView: View {
 
     private var listItmesView: AnyView {
         if selectedValue == SegmentedPickerValues.popular.rawValue {
-            return AnyView(AgentsListView(isFavorite: false))
+            return AnyView(AgentsListView(isFavorite: false, agentListViewModel: agentListViewModel))
         }
-        return AnyView(AgentsListView(isFavorite: true))
+        return AnyView(AgentsListView(isFavorite: true, agentListViewModel: agentListViewModel))
     }
 }
 
 struct HomeScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreenView()
+        HomeScreenView(agentListViewModel: AgentListViewModel())
     }
 }

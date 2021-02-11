@@ -22,9 +22,6 @@ struct AgentDetailsView: View {
     }
 
     var body: some View {
-//        self.agentDetailsViewModel.agentErrorSubject.sink { (error) in
-//            <#code#>
-//        }
         return GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .leading, spacing: 8, content: {
