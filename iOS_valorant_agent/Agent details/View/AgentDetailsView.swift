@@ -23,31 +23,30 @@ struct AgentDetailsView: View {
 
     var body: some View {
         BaseView(viewModel: agentDetailsViewModel) {
-         GeometryReader { geometry in
-            ScrollView {
-                VStack(alignment: .leading, spacing: 8, content: {
+            GeometryReader { geometry in
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 8, content: {
 
-                    drawUpperHeader(geometry: geometry)
-                    Text("Biography")
-                        .padding(.leading, 8.0)
-                    Text(agentDetailsViewModel.agent?.datumDescription ?? "")
-                        .padding(.leading, 8.0)
-                        .padding(.bottom, 32.0)
-                    Text("Special Abilities")
-                        .padding(.leading, 8.0)
-                    ForEach(agentDetailsViewModel.agent?.abilities ?? [], id: \.displayName) { (ability) in
-                        HStack(alignment: .top, spacing: 8.0, content: {
-                            abilityImage(imagePath: ability.displayIcon ?? "")
-                            Text(ability.abilityDescription ?? "")
-                        })
-                    }
+                        drawUpperHeader(geometry: geometry)
+                        Text("Biography")
+                            .padding(.leading, 8.0)
+                            .font(.title2)
+                        Text(agentDetailsViewModel.agent?.datumDescription ?? "")
+                            .padding(.leading, 8.0)
+                            .padding(.bottom, 32.0)
+                        Text("Special Abilities")
+                            .padding(.leading, 8.0)
+                            .font(.title2)
+                        ForEach(agentDetailsViewModel.agent?.abilities ?? [], id: \.displayName) { (ability) in
+                           drawAbilityView(ability: ability)
+                        }
 
-                })
+                    })
+                }
             }
-        }
-        .navigationBarTitle("\(agentDetailsViewModel.agent?.displayName ?? "") Details")
+            .navigationBarTitle("\(agentDetailsViewModel.agent?.displayName ?? "") Details")
 
-    }
+        }
     }
 
     private func drawUpperHeader(geometry: GeometryProxy) -> some View {
@@ -110,7 +109,35 @@ struct AgentDetailsView: View {
 
     }
 
-    func agentImage(imagePath: String) -> some View {
+    private func drawAbilityView(ability: Ability) -> some View {
+        HStack(alignment: .top, spacing: 8.0) {
+            ZStack {
+                Color.abilityImageBackgroundColor
+                    .frame(width: 80, height: 80)
+                    .cornerRadius(10)
+
+                abilityImage(imagePath: ability.displayIcon ?? "")
+                    .padding(.trailing, 5)
+            }
+
+            VStack(alignment: .leading, spacing: 8) {
+                Text(ability.displayName ?? "")
+                    .font(.title3)
+                    .bold()
+                Text(ability.abilityDescription ?? "")
+                    .font(.body)
+
+            }
+        }
+        .padding()
+        .background(Color.abilityBackgroundColor)
+        .cornerRadius(20)
+        .padding(.horizontal)
+        .padding(.vertical, 5)
+
+    }
+
+    private func agentImage(imagePath: String) -> some View {
         let url = URL(string: imagePath)
         return KFImage(url)
             .resizable()
@@ -119,7 +146,7 @@ struct AgentDetailsView: View {
             .aspectRatio(contentMode: .fill)
     }
 
-    func abilityImage(imagePath: String) -> some View {
+    private func abilityImage(imagePath: String) -> some View {
         let url = URL(string: imagePath)
         return KFImage(url)
             .resizable()

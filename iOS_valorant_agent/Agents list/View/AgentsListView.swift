@@ -73,9 +73,8 @@ struct AgentsListView: View {
 
     private func drawListItem(color: Color, agent: AgentsData, geometry: GeometryProxy) -> some View {
         ZStack {
-            Rectangle().fill(color)
-                .cornerRadius(30, corners: [.topRight, .bottomLeft])
-                .rotation3DEffect(Angle(degrees: 4), axis: (x: 0, y:1, z:0))
+
+            getItemBackgroundView(color: color)
 
             ZStack(alignment: .bottom) {
                 KFImage(URL(string: agent.bustPortrait ?? ""))
@@ -102,6 +101,13 @@ struct AgentsListView: View {
         .onTapGesture {
             agentListViewModel.didSelectAgentDetails.send((agent.uuid, color))
         }
+    }
+
+    private func getItemBackgroundView(color: Color) -> some View {
+        Rectangle().fill(color)
+            .cornerRadius(30, corners: [.topRight, .bottomLeft])
+            .rotation3DEffect(Angle(degrees: 4), axis: (x: 0, y:1, z:0))
+
     }
 }
 

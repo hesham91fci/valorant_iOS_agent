@@ -33,6 +33,9 @@ extension UINavigationController {
 }
 
 extension Color {
+    static var abilityImageBackgroundColor = Color(red: 34/255, green: 47/255, blue: 68/255)
+    static var abilityBackgroundColor = Color(red: 17/255, green: 26/255, blue: 39/255)
+
     static var characterColors: [Color] {
         return [
             Color(red: 112/255, green: 123/255, blue: 109/255),
